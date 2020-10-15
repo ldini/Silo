@@ -1,0 +1,277 @@
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+
+
+
+<META charset="UTF-8"> 
+        
+
+
+
+<STYLE type="text/css">
+            #main{
+                position:relative; 
+                margin:0;
+                padding:0;
+                top:0;
+                left:0;
+                background-color: white;
+                //border:1px solid red;
+                background:-webkit-linear-gradient(60deg, white 0px, black 1px, red 0px, white 0px) 25px -24px;
+                background:-moz-linear-gradient(60deg, white 0px, black 1px, red 0px, white 0px) 25px -24px;
+                background:-o-linear-gradient(60deg, white 0px, black 1px, red 0px, white 0px) 25px -24px;
+                background:linear-gradient(60deg, white 0px, black 1px, red 0px, white 0px) 25px -24px;
+                background-size: 10px 10px;
+            }
+            .textCenter{   
+                //MARGIN-LEFT: auto;
+                vertical-align:middle;
+                text-align:center;
+                //word-wrap:break-word;
+                text-overflow: ellipsis; 
+                overflow: hidden; 
+                white-space: nowrap; 
+            }
+        </STYLE>
+        
+
+
+
+<LINK href="js/jqueryui/jqueryui.css" rel="stylesheet" type="text/css">
+        
+
+
+
+<SCRIPT type="text/javascript" src="js/jquery.js"></SCRIPT>
+        <SCRIPT type="text/javascript" src="js/jqueryui/jqueryui.js"></SCRIPT>
+        <SCRIPT type="text/javascript" src="js/edit.js"></SCRIPT>
+        <SCRIPT type="text/javascript" src="js/analog.js"></SCRIPT>
+        
+
+
+
+<TITLE></TITLE>
+    
+
+
+
+</HEAD>
+    
+
+
+
+<BODY onload="loadEditPage()">
+        
+
+
+
+<DIV id="main" onclick="hideMenu()" prefix="Siemens" style="width: 1420px; height: 880px; background-image: url(file:///D:/documentos/Silo/NetBeansProjects/Silo_Web/img/9599BBF5.png); background-size: 1420px 880px; margin: 0px; padding: 0px; top: 0px; left: 0px; background-position: 0px 0px; background-repeat: no-repeat no-repeat;" bg_image="img/9599BBF5.png">
+
+
+
+<DIV comp_type="CustomizedComponent" show_function="loadCustomizedComponent" class="server_binding textCenter" style="position: absolute; left: 240px; top: 132px; width: 186px; height: 254px; text-align: center; background-size: 186px 255px; line-height: 254px; transform: rotate(0deg); background-image: url(file:///D:/documentos/Silo/NetBeansProjects/Silo_Web/img/0B1114AF.png); z-index: 6; background-repeat: no-repeat no-repeat;" range="130" address="10" type="1" length="1" on_text="" off_text="" id="1599934723908283" show_param="1599934723908283" degree="0" tag_id="Private Tag" on_image="img/7721D752.png" off_image="img/0B1114AF.png" mode="false"></DIV>
+
+
+
+<SCRIPT type="text/javascript">    var loadCustomizedComponent = function loadCustomizedComponent() {        var id = this.m_sShowParam;        var ontext = document.getElementById(id).getAttribute("on_text");        var offtext = document.getElementById(id).getAttribute("off_text");        var onimage = document.getElementById(id).getAttribute("on_image");        var offimage = document.getElementById(id).getAttribute("off_image");        var value = parseInt(this.m_sValue, 16);        document.getElementById(id).value = value;        var showText = (value == 0) ? offtext : ontext;        var showImage = (value == 0) ? offimage : onimage;        if ($("#" + id + " p").length == 0) {            document.getElementById(id).innerHTML = showText;        } else {            $("#" + id + " p").html(showText);        }        document.getElementById(id).style.backgroundImage = "url(" + showImage + ")";    };</SCRIPT>
+
+
+
+<DIV class="server_binding analog_input" comp_type="AnalogValueComponent" show_function="loadAnalogValueComponent" style="border: 0px solid red; position: absolute; left: 291px; top: 267px; width: 84px; height: 22px; text-align: center; background-size: 84px 23px; transform: rotate(0deg); z-index: 5; background-repeat: no-repeat no-repeat;" range="20" address="656" type="4" length="1" show_param="1599934723918284" id="1599934723918284" degree="0" tag_id="Private Tag" block_format="Unsigned" mode="true">    
+
+
+
+<DIV class="valueText" style="">        
+
+
+
+<INPUT class="inputVal" type="text" size="5" value="" style="width:100%;height:100%">        <SPAN class="unit" style="position: absolute; top: 4px; left: 86px;"></SPAN>    
+
+
+
+</DIV>    
+
+
+
+<DIV class="notice" style="color: red;"></DIV>
+
+
+
+</DIV>
+
+
+
+<SCRIPT type="text/javascript">    var loadAnalogValueComponent = function loadAnalogInputComponent() {        var id = this.m_sShowParam;        var blockFormat = $("#" + id).attr("block_format");        var accessModeType = $("#" + id).attr("type");        $("#" + id).attr("title", blockFormat);        var value = getValueByBlockFormat(blockFormat, accessModeType, this.m_sValue);        var actVal = value;        $("#" + id).children(".valueText").children(".inputVal").attr("placeholder", actVal);        $("#" + id).attr("last_placeholder", actVal);    }</SCRIPT>
+
+
+
+<DIV comp_type="CustomizedComponent" show_function="loadCustomizedComponent" class="server_binding textCenter" style="position: absolute; left: 322px; top: 402px; width: 57px; height: 34px; text-align: center; background-size: 57px 35px; line-height: 34px; transform: rotate(0deg); background-image: url(file:///D:/documentos/Silo/NetBeansProjects/Silo_Web/img/982170EF.png); z-index: 8; background-repeat: no-repeat no-repeat;" range="131" address="53" type="1" length="1" on_text="" off_text="" id="1599934723922285" show_param="1599934723922285" degree="0" tag_id="Private Tag" on_image="img/AC2417CB.png" off_image="img/982170EF.png" mode="true" onclick="setDigitalData(this)"></DIV>
+
+
+
+<SCRIPT type="text/javascript">    var loadCustomizedComponent = function loadCustomizedComponent() {        var id = this.m_sShowParam;        var ontext = document.getElementById(id).getAttribute("on_text");        var offtext = document.getElementById(id).getAttribute("off_text");        var onimage = document.getElementById(id).getAttribute("on_image");        var offimage = document.getElementById(id).getAttribute("off_image");        var value = parseInt(this.m_sValue, 16);        document.getElementById(id).value = value;        var showText = (value == 0) ? offtext : ontext;        var showImage = (value == 0) ? offimage : onimage;        if ($("#" + id + " p").length == 0) {            document.getElementById(id).innerHTML = showText;        } else {            $("#" + id + " p").html(showText);        }        document.getElementById(id).style.backgroundImage = "url(" + showImage + ")";    };</SCRIPT>
+
+
+
+<DIV comp_type="CustomizedComponent" show_function="loadCustomizedComponent" class="server_binding textCenter" style="position: absolute; left: 290px; top: 277px; width: 83px; height: 76px; text-align: center; background-size: 83px 77px; line-height: 76px; transform: rotate(0deg); background-image: url(file:///D:/documentos/Silo/NetBeansProjects/Silo_Web/img/9538DB25.gif); z-index: 12; background-repeat: no-repeat no-repeat;" range="130" address="10" type="1" length="1" on_text="" off_text="" id="1599934723935286" show_param="1599934723935286" degree="0" tag_id="Private Tag" on_image="img/87702A79.gif" off_image="img/9538DB25.gif" mode="false"></DIV>
+
+
+
+<SCRIPT type="text/javascript">    var loadCustomizedComponent = function loadCustomizedComponent() {        var id = this.m_sShowParam;        var ontext = document.getElementById(id).getAttribute("on_text");        var offtext = document.getElementById(id).getAttribute("off_text");        var onimage = document.getElementById(id).getAttribute("on_image");        var offimage = document.getElementById(id).getAttribute("off_image");        var value = parseInt(this.m_sValue, 16);        document.getElementById(id).value = value;        var showText = (value == 0) ? offtext : ontext;        var showImage = (value == 0) ? offimage : onimage;        if ($("#" + id + " p").length == 0) {            document.getElementById(id).innerHTML = showText;        } else {            $("#" + id + " p").html(showText);        }        document.getElementById(id).style.backgroundImage = "url(" + showImage + ")";    };</SCRIPT>
+
+
+
+<DIV class="TextComponent" comp_type="TextComponent" style="overflow: hidden; line-height: 100%; position: absolute; left: 291px; top: 44px; width: 482px; height: 70px; text-align: center; background-size: 482px 71px; transform: rotate(0deg); font-style: normal; font-family: Arial; font-size: 24px; color: rgb(51, 51, 0); z-index: 9; background-repeat: no-repeat no-repeat;" id="1599934723939287" degree="0">    
+
+
+
+<P style="display:table-cell; vertical-align:middle;text-align: center; ">Modo Automatico "Silo 11"</P>
+
+
+
+</DIV>
+
+
+
+<DIV comp_type="CustomizedComponent" show_function="loadCustomizedComponent" class="server_binding textCenter" style="position: absolute; left: 253px; top: 144px; width: 159px; height: 231px; text-align: center; background-size: 159px 232px; line-height: 231px; transform: rotate(0deg); background-image: url(file:///D:/documentos/Silo/NetBeansProjects/Silo_Web/img/DD670257.png); z-index: 7; background-repeat: no-repeat no-repeat;" range="130" address="0" type="1" length="1" on_text="" off_text="" id="1599934723943288" show_param="1599934723943288" degree="0" tag_id="Private Tag" on_image="img/DD670257.png" off_image="img/DD670257.png" mode="false"></DIV>
+
+
+
+<SCRIPT type="text/javascript">    var loadCustomizedComponent = function loadCustomizedComponent() {        var id = this.m_sShowParam;        var ontext = document.getElementById(id).getAttribute("on_text");        var offtext = document.getElementById(id).getAttribute("off_text");        var onimage = document.getElementById(id).getAttribute("on_image");        var offimage = document.getElementById(id).getAttribute("off_image");        var value = parseInt(this.m_sValue, 16);        document.getElementById(id).value = value;        var showText = (value == 0) ? offtext : ontext;        var showImage = (value == 0) ? offimage : onimage;        if ($("#" + id + " p").length == 0) {            document.getElementById(id).innerHTML = showText;        } else {            $("#" + id + " p").html(showText);        }        document.getElementById(id).style.backgroundImage = "url(" + showImage + ")";    };</SCRIPT>
+
+
+
+<DIV class="TextComponent" comp_type="TextComponent" style="overflow: hidden; line-height: 100%; position: absolute; left: 308px; top: 161px; width: 84px; height: 41px; text-align: center; background-size: 84px 42px; transform: rotate(0deg); font-style: normal; font-family: Arial; font-size: 14px; color: rgb(0, 0, 0); z-index: 10; background-repeat: no-repeat no-repeat;" id="1599934723947289" degree="0">    
+
+
+
+<P style="display:table-cell; vertical-align:middle;text-align: center; ">SILO 11</P>
+
+
+
+</DIV>
+
+
+
+<DIV class="server_binding analog_input" comp_type="AnalogValueComponent" show_function="loadAnalogValueComponent" style="border: 0px solid red; position: absolute; left: 290px; top: 304px; width: 84px; height: 22px; text-align: center; background-size: 84px 23px; transform: rotate(0deg); z-index: 4; background-repeat: no-repeat no-repeat;" range="20" address="672" type="4" length="1" show_param="1599934723951290" id="1599934723951290" degree="0" tag_id="Private Tag" block_format="Unsigned" mode="true">    
+
+
+
+<DIV class="valueText" style="">        
+
+
+
+<INPUT class="inputVal" type="text" size="5" value="" style="width:100%;height:100%">        <SPAN class="unit" style="position: absolute; top: 4px; left: 86px;"></SPAN>    
+
+
+
+</DIV>    
+
+
+
+<DIV class="notice" style="color: red;"></DIV>
+
+
+
+</DIV>
+
+
+
+<SCRIPT type="text/javascript">    var loadAnalogValueComponent = function loadAnalogInputComponent() {        var id = this.m_sShowParam;        var blockFormat = $("#" + id).attr("block_format");        var accessModeType = $("#" + id).attr("type");        $("#" + id).attr("title", blockFormat);        var value = getValueByBlockFormat(blockFormat, accessModeType, this.m_sValue);        var actVal = value;        $("#" + id).children(".valueText").children(".inputVal").attr("placeholder", actVal);        $("#" + id).attr("last_placeholder", actVal);    }</SCRIPT>
+
+
+
+<DIV class="server_binding analog_input" comp_type="AnalogValueComponent" show_function="loadAnalogValueComponent" style="border: 0px solid red; position: absolute; left: 291px; top: 228px; width: 84px; height: 22px; text-align: center; background-size: 84px 23px; transform: rotate(0deg); z-index: 3; background-repeat: no-repeat no-repeat;" range="20" address="640" type="4" length="1" show_param="1599934723956291" id="1599934723956291" degree="0" tag_id="Private Tag" block_format="Unsigned" mode="true">    
+
+
+
+<DIV class="valueText" style="">        
+
+
+
+<INPUT class="inputVal" type="text" size="5" value="" style="width:100%;height:100%">        <SPAN class="unit" style="position: absolute; top: 4px; left: 86px;"></SPAN>    
+
+
+
+</DIV>    
+
+
+
+<DIV class="notice" style="color: red;"></DIV>
+
+
+
+</DIV>
+
+
+
+<SCRIPT type="text/javascript">    var loadAnalogValueComponent = function loadAnalogInputComponent() {        var id = this.m_sShowParam;        var blockFormat = $("#" + id).attr("block_format");        var accessModeType = $("#" + id).attr("type");        $("#" + id).attr("title", blockFormat);        var value = getValueByBlockFormat(blockFormat, accessModeType, this.m_sValue);        var actVal = value;        $("#" + id).children(".valueText").children(".inputVal").attr("placeholder", actVal);        $("#" + id).attr("last_placeholder", actVal);    }</SCRIPT>
+
+
+
+<DIV comp_type="RectangleComponent" style="border: 0px solid rgb(0, 0, 0); position: absolute; left: 477px; top: 130px; width: 332px; height: 304px; text-align: center; background-size: 332px 305px; transform: rotate(0deg); zoom: 1; opacity: 1; z-index: 11; background-repeat: no-repeat no-repeat;" id="1599934723960292" degree="0"></DIV>
+
+
+
+<DIV class="server_binding analog_input" comp_type="AnalogValueComponent" show_function="loadAnalogValueComponent" style="border: 0px solid red; position: absolute; left: 240px; top: 132px; width: 22px; height: 22px; text-align: center; background-size: 22px 23px; transform: rotate(0deg); z-index: 2; background-repeat: no-repeat no-repeat;" range="20" address="944" type="4" length="1" show_param="1602485685555163" id="1602485685555163" degree="0" tag_id="Private Tag" block_format="Unsigned" mode="true">    
+
+<DIV class="valueText" style="">        
+
+<INPUT class="inputVal" type="text" size="5" value="" style="width:100%;height:100%">        <SPAN class="unit" style="position: absolute; top: 4px; left: 24px;"></SPAN>    
+
+</DIV>    
+
+<DIV class="notice" style="color: red;"></DIV>
+
+</DIV>
+
+<SCRIPT type="text/javascript">    var loadAnalogValueComponent = function loadAnalogInputComponent() {        var id = this.m_sShowParam;        var blockFormat = $("#" + id).attr("block_format");        var accessModeType = $("#" + id).attr("type");        $("#" + id).attr("title", blockFormat);        var value = getValueByBlockFormat(blockFormat, accessModeType, this.m_sValue);        var actVal = value;        $("#" + id).children(".valueText").children(".inputVal").attr("placeholder", actVal);        $("#" + id).attr("last_placeholder", actVal);    }</SCRIPT>
+<SCRIPT type="text/javascript">    var showDateTime = function showDateTime() {        if(this.m_sValue&&this.m_sValue.length==12){            var sv = this.m_sValue;            var sec = getValueByBlockFormat("Unsigned", "2", sv.substr(0,2)) + "";            sec = (sec.length == 1) ? "0" + sec : sec;            var date = "20" + sv.substr(2,2) + " - " + sv.substr(4,2) + " - " + sv.substr(6,2);            var time = sv.substr(8,2) + ":" + sv.substr(10,2) + ":" + sec;            var dayNo = new Date(parseInt("20" + sv.substr(2,2)), sv.substr(4,2)-1, sv.substr(6,2)).getDay();                $("#" + this.m_sShowParam + " .dayTime").html(WEEKDAY[dayNo] + " " + time);            $("#" + this.m_sShowParam + " .date").html(date);        }else{            $("#" + this.m_sShowParam + " .dayTime").html("ddd. HH:mm:ss");            $("#" + this.m_sShowParam + " .date").html("yyyy-MM-dd");            console.error("LWE runtime error: AnalogDateTimeComponent connect error!");        }    }</SCRIPT>
+<DIV class="TextComponent" comp_type="TextComponent" style="overflow: hidden; line-height: 100%; position: absolute; left: 678px; top: 44px; width: 65px; height: 34px; text-align: center; background-size: 65px 35px; transform: rotate(0deg); font-style: normal; font-family: Arial; font-size: 14px; color: rgb(0, 0, 0); z-index: 14; background-repeat: no-repeat no-repeat;" id="1602532906123284" degree="0">    
+<P style="display:table-cell; vertical-align:middle;text-align: center; ">Humedad:</P>
+</DIV>
+<DIV class="server_binding analog_input" comp_type="AnalogValueComponent" show_function="loadAnalogValueComponent" style="border: 0px solid red; position: absolute; left: 752px; top: 44px; width: 37px; height: 22px; text-align: center; background-size: 37px 23px; transform: rotate(0deg); z-index: 15; background-repeat: no-repeat no-repeat;" range="20" address="784" type="4" length="1" show_param="1602532906125285" id="1602532906125285" degree="0" tag_id="Private Tag" block_format="Signed" mode="false">    
+<DIV class="valueText" style="">        
+<INPUT class="inputVal" type="text" size="5" value="" style="width:100%;height:100%">        <SPAN class="unit" style="position: absolute; top: 4px; left: 39px;">%</SPAN>    
+</DIV>    
+<DIV class="notice" style="color: red;"></DIV>
+</DIV>
+<SCRIPT type="text/javascript">    var loadAnalogValueComponent = function loadAnalogInputComponent() {        var id = this.m_sShowParam;        var blockFormat = $("#" + id).attr("block_format");        var accessModeType = $("#" + id).attr("type");        $("#" + id).attr("title", blockFormat);        var value = getValueByBlockFormat(blockFormat, accessModeType, this.m_sValue);        var actVal = value;        $("#" + id).children(".valueText").children(".inputVal").attr("placeholder", actVal);        $("#" + id).attr("last_placeholder", actVal);    }</SCRIPT>
+<DIV class="server_binding analog_input" comp_type="AnalogValueComponent" show_function="loadAnalogValueComponent" style="border: 0px solid red; position: absolute; left: 752px; top: 82px; width: 37px; height: 22px; text-align: center; background-size: 37px 23px; transform: rotate(0deg); z-index: 16; background-repeat: no-repeat no-repeat;" range="20" address="800" type="4" length="1" show_param="1602532906128286" id="1602532906128286" degree="0" tag_id="Private Tag" block_format="Signed" mode="false">    
+<DIV class="valueText" style="">        
+<INPUT class="inputVal" type="text" size="5" value="" style="width:100%;height:100%">        <SPAN class="unit" style="position: absolute; top: 4px; left: 39px;">%</SPAN>    
+</DIV>    
+<DIV class="notice" style="color: red;"></DIV>
+</DIV>
+<SCRIPT type="text/javascript">    var loadAnalogValueComponent = function loadAnalogInputComponent() {        var id = this.m_sShowParam;        var blockFormat = $("#" + id).attr("block_format");        var accessModeType = $("#" + id).attr("type");        $("#" + id).attr("title", blockFormat);        var value = getValueByBlockFormat(blockFormat, accessModeType, this.m_sValue);        var actVal = value;        $("#" + id).children(".valueText").children(".inputVal").attr("placeholder", actVal);        $("#" + id).attr("last_placeholder", actVal);    }</SCRIPT>
+<DIV class="TextComponent" comp_type="TextComponent" style="overflow: hidden; line-height: 100%; position: absolute; left: 659px; top: 82px; width: 84px; height: 34px; text-align: center; background-size: 84px 35px; transform: rotate(0deg); font-style: normal; font-family: Arial; font-size: 14px; color: rgb(0, 0, 0); z-index: 17; background-repeat: no-repeat no-repeat;" id="1602532906130287" degree="0">    
+<P style="display:table-cell; vertical-align:middle;text-align: center; ">Temperatura:</P>
+</DIV>
+<DIV class="TextComponent" comp_type="TextComponent" style="overflow: hidden; line-height: 100%; position: absolute; left: 240px; top: 412px; width: 84px; height: 34px; text-align: center; background-size: 84px 35px; transform: rotate(0deg); font-style: normal; font-family: Arial; font-size: 14px; color: rgb(0, 0, 0); z-index: 18; background-repeat: no-repeat no-repeat;" id="1602533138124342" degree="0">    
+<P style="display:table-cell; vertical-align:middle;text-align: center; ">Automatico</P>
+</DIV>
+</DIV>
+    
+
+
+
+
+
+
+
+
+
+
+</BODY>
+</HTML>
