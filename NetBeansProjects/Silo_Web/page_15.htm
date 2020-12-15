@@ -69,6 +69,8 @@
         <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" src="js/jqueryui/jqueryui.js"></script>
         <script type="text/javascript" src="js/render.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
     </HEAD>
     <BODY onload="loadPage()">  
         <DIV  id="wrap">
@@ -184,11 +186,15 @@
 
 
     <div>
-        <div id="formulario">
 <fieldset>
         <legend>Datos</legend>
-        <label for="">Humedad:</label>
-        <input type="text" id="humedad">
+        <label for="humedad">Humedad:</label>
+        <select name="humedad" id="humedad">
+            <option value="1">Muy Seco</option>
+            <option value="2">Seco</option>
+            <option value="3">Humedo</option>
+            <option value="4">Muy Humedo</option>
+        </select>
         <br><br>
         <label for="">Toneladas:</label>
         <input type="text" id="toneladas">
@@ -206,9 +212,7 @@
         <br><br>
         <input type="button" onclick="cambiar()" value="Calucular">
         </fieldset>
-</div>
 
-<div id='info'>
   <fieldset>
       <legend>Informacion de Grano</legend>
       <p id='info_marcha'>Marcha: Datos no Ingresados (hs)</p>
@@ -218,11 +222,8 @@
       <p id='info_toneladas'>Tonaladas: Datos no Ingresados (hs)</p>
       <p id='info_humedad'>Humedad: Datos no Ingresados (hs)</p>
       <p id='info_temperatura'>Temperatura: Datos no Ingresados (hs)</p>
-      <input type="button" onclick="mostrar('2')" value="atras">
   <fieldset>
 </div>
-                                </div>
-                            </div>
                         </div></div> 
                         
                         <script type="text/javascript">
@@ -236,115 +237,159 @@
                             var input3 = document.getElementById("1599934723951290");
                             input3.style.display = 'none';
                         
-                            let info = document.getElementById('info');
-                            let formulario = document.getElementById('formulario');
                             var informacion = [];
-                            formulario.style.display = 'block';
-                            info.style.display = 'none';
 
-                            function mostrar(opc){
+                            firebase.initializeApp({
+                                apiKey: "AIzaSyAdDIO55DLUnZ0AO15r8Jk0GHWhQulv_Dc",
+                                authDomain: "prueba1-a6072.firebaseapp.com",
+                                projectId: "prueba1-a6072"
+                            });
+                            
+                            var db = firebase.firestore();
 
-                            if(opc == 1){
-                                formulario.style.display = 'none';
-                                info.style.display = 'block';
-                                document.getElementById("info_marcha").innerHTML = "Marcha: " + informacion[5] + " hs";
-                                document.getElementById("info_descanso").innerHTML = "descanso: " + informacion[6] + " hs";
-                                document.getElementById("info_total").innerHTML = "Total horas: " + informacion[7] + " hs";
-                                document.getElementById("info_toneladas").innerHTML = "Tonaladas: " + informacion[2] + " T";
-                                document.getElementById("info_grano").innerHTML = "Grano: " + informacion[3];
-                                document.getElementById("info_humedad").innerHTML = "Humedad: " + informacion[0] +" %";
-                                document.getElementById("info_temperatura").innerHTML = "Temperatura: " + informacion[1] + " C";
+                            function mostrar_datos(){
+                                let silo1 = db.collection("silos").doc("silo11");
+                                silo1.onSnapshot(function(doc) {
+                                    if (doc.exists) {
+                                        console.log("Document data:", doc.data());
+                                        document.getElementById("info_marcha").innerHTML = "Marcha: " + doc.data().marcha + " hs";
+                                        document.getElementById("info_descanso").innerHTML = "descanso: " + doc.data().descanzo + " hs";
+                                        document.getElementById("info_total").innerHTML = "Total horas: " + doc.data().total + " hs";
+                                        document.getElementById("info_toneladas").innerHTML = "Tonaladas: " + doc.data().toneladas + " T";
+                                        document.getElementById("info_grano").innerHTML = "Grano: " + doc.data().grano;
+                                        document.getElementById("info_humedad").innerHTML = "Humedad: " + doc.data().humedad +" %";
+                                        document.getElementById("info_temperatura").innerHTML = "Temperatura: " + doc.data().temperatura + " C";
+                                    } else {
+                                        // doc.data() will be undefined in this case
+                                        console.log("No such document!");
+                                    }
+                                }
+                                );
                             }
-                            if(opc == 2){
-                                formulario.style.display = 'block';
-                                info.style.display = 'none';
 
-                            }
-                            }
-
+                            
 
                             function dec2hexString(dec) {
-                            return  (dec+0x10000).toString(16).substr(-4);}
+                                return  (dec+0x10000).toString(16).substr(-4);
+                            }
+
+                            function set_or_update_silo(id,a1,a2,a3,a4,a5,a6,a7){  
+                            let silo = db.collection("silos").doc(id);
+                                silo.set({
+                                    marcha: parseInt(a1),
+                                    descanzo: parseInt(a2),
+                                    total: parseInt(a3),
+                                    grano:a4,
+                                    toneladas: parseInt(a5),
+                                    humedad: parseInt(a6),
+                                    temperatura: parseInt(a7)
+                                });
+                            }
 
                             function cambiar(){
 
-                            let h = parseInt(document.getElementById('humedad').value);
-                            let t = parseInt(document.getElementById('temperatura').value);
-                            let to = parseInt(document.getElementById('toneladas').value);
-                            let grano = document.getElementById('grano').value;
-                            let d=h;
-                            let suma = (to/100);
-                            
-                            informacion[0] = h;
-                            informacion[1] = t;
-                            informacion[2] = to;
-                            informacion[3] = grano;
-                            informacion[4] = suma;
-                            
-                            if(t>16,5){
-                                t= ((t-16,5)/100)*suma;}
-                            else{
-                                t=0;}
+                                let h;
+                                let pre_h = parseInt(document.getElementById('humedad').value);
+                                switch (pre_h) {
+                                case 1:
+                                    h = 20;
+                                    break;
+                                case 2:
+                                    h = 61;
+                                    break;
+                                case 3:
+                                    h = 71;
+                                    break;
+                                case 4:
+                                    h = 91;
+                                    break;
+                                }
 
-                            if(grano == 'cebada'){
-                                if(h>12){
-                                h= ((h-12)/100)*suma;}
+                                let t = parseInt(document.getElementById('temperatura').value);
+                                let to = parseInt(document.getElementById('toneladas').value);
+                                let grano = document.getElementById('grano').value;
+                                let d=h;
+                                let suma = (to/100);
+                                
+                                informacion[8] = h;
+                                informacion[1] = t;
+                                informacion[2] = to;
+                                informacion[3] = grano;
+                                informacion[4] = suma;
+                                
+                                if(t>16,5){
+                                    t= ((t-16,5)/100)*suma;}
                                 else{
-                                h=0;}
-                            }
+                                    t=0;}
 
-                            if(grano == 'trigo'){
-                                if(h>14){
-                                h= ((h-14)/100)*suma;}
-                                else{
-                                h=0;}
-                            }
+                                if(grano == 'cebada'){
+                                    if(h>12){
+                                    h= ((h-12)/100)*suma;}
+                                    else{
+                                    h=0;}
+                                }
 
-                            if(grano == 'soja'){
-                                if(h>10){
-                                h= ((h-10)/100)*suma;}
-                                else{
-                                h=0;}
-                            }
+                                if(grano == 'trigo'){
+                                    if(h>14){
+                                    h= ((h-14)/100)*suma;}
+                                    else{
+                                    h=0;}
+                                }
 
-                            if(grano == 'maiz'){
-                                if(h>10){
-                                h= ((h-10)/100)*suma;}
-                                else{
-                                h=0;}
-                            }
+                                if(grano == 'soja'){
+                                    if(h>10){
+                                    h= ((h-10)/100)*suma;}
+                                    else{
+                                    h=0;}
+                                }
 
-                            suma= Math.trunc(suma + t + h);
-                            if(suma % 2 > 0)
-                                suma = suma +1;
+                                if(grano == 'maiz'){
+                                    if(h>10){
+                                    h= ((h-10)/100)*suma;}
+                                    else{
+                                    h=0;}
+                                }
 
-                            let tiempo_accion = 6;
-                            let tiempo_espera = 6;
+                                suma= Math.trunc(suma + t + h);
+                                if(suma % 2 > 0)
+                                    suma = suma +1;
 
-                            informacion[5] = tiempo_accion;
-                            informacion[6] = tiempo_espera;
-                            informacion[7] = suma;
-                            
-                            suma = suma*60;
-                            tiempo_accion = tiempo_accion*60;
-                            tiempo_espera = tiempo_espera*60;
+                                let tiempo_accion = 4;
+                                let tiempo_espera = 4;
 
-                            let a= dec2hexString(suma);
-                            let b = dec2hexString(tiempo_accion);
-                            let c = dec2hexString(tiempo_espera);
-                            let e = dec2hexString(d);                  
+                                informacion[5] = tiempo_accion;
+                                informacion[6] = tiempo_espera;
+                                informacion[7] = suma;
+                                
+                                suma = suma*60;
+                                tiempo_accion = tiempo_accion*60;
+                                tiempo_espera = tiempo_espera*60;
+
+                                
+                                    let a= dec2hexString(suma);
+                                    let b = dec2hexString(tiempo_accion);
+                                    let c = dec2hexString(tiempo_espera);
+                                    let e = dec2hexString(d);     
+                                    if(informacion[8] != 20){          
 
                                 doSetAnalogValue(1599934723956291, a); // Setea el valor del tiempo total en hexa
                                 doSetAnalogValue(1599934723918284, b); // Setea el valor del tiempo en marcha en hexa
                                 doSetAnalogValue(1599934723951290, c);  // Setea el valor del tiempo total en hexa
                                 doSetAnalogValue(1602485685555163, e);
                                                        
+                            }
+                                    if(informacion[8] == 20){
+                                        alert("Grano muy seco, no se puede iniciar!");
+                                    }
+                                                       
                                 console.log(a);
                                 console.log(b);
                                 console.log(c);
                                 console.log(e);
-                                mostrar(1);
+                                
+                                set_or_update_silo("silo11",informacion[5],informacion[6],informacion[7],informacion[3],informacion[2],informacion[8],informacion[1]);
                             }
+                            mostrar_datos();
                         </script>
 
     </div>

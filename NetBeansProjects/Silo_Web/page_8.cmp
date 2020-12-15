@@ -179,7 +179,7 @@
         </Component>
         <Component class="com.siemens.logo.udwp.editor.component.CustomizedComponent" id="1599108468882201" name="Digital Value">
             <ComponentProperty class="NameProperty" id="PROPERTY_Name" value="Digital Value"/>
-            <ComponentProperty class="BoundsProperty$Location" id="PROPERTY_Location" value="288@-@360"/>
+            <ComponentProperty class="BoundsProperty$Location" id="PROPERTY_Location" value="287@-@360"/>
             <ComponentProperty class="BoundsProperty$Size" id="PROPERTY_Size" value="73@-@50"/>
             <ComponentProperty class="BasicProperty$Degree" id="PROPERTY_Degree" value="0"/>
             <ComponentProperty class="BoundsProperty$MaxSize" id="PROPERTY_MAX_SIZE" value="600@-@600"/>
@@ -190,7 +190,7 @@
             <ComponentProperty class="BasicProperty$IDProperty" id="PROPERTY_Component_Id" value="1599108468882201"/>
             <ComponentProperty class="LogoBindingProperty$TagName" id="PROPERTY_Tag_Name" value="Private Tag"/>
             <ComponentProperty class="LogoBindingProperty$BlockType" id="PROPERTY_BlockType" value="M"/>
-            <ComponentProperty class="LogoBindingProperty$BlockNumber" id="PROPERTY_BlockNumber" value="M59"/>
+            <ComponentProperty class="LogoBindingProperty$BlockNumber" id="PROPERTY_BlockNumber" value="M38"/>
             <ComponentProperty class="LogoBindingProperty$VariableLength" id="PROPERTY_Length" value="1"/>
             <ComponentProperty class="LogoBindingProperty$AccessMode" id="PROPERTY_AccessMode" value="Bit"/>
             <ComponentProperty class="AnimationProperty$OnImage" id="PROPERTY_ON_IMAGE" value="C:\Program Files\lwe\lwe\res\Graph Library\My Graph\BoronOn.png@-@AC2417CB.png@-@Default.png@-@null"/>
