@@ -386,14 +386,15 @@
 
     <div>
         <div>
+            <div id="form">
 <fieldset>
         <legend>Datos</legend>
         <label for="humedad">Humedad:</label>
         <select name="humedad" id="humedad">
-            <option value="1">Muy Seco</option>
-            <option value="2">Seco</option>
-            <option value="3">Humedo</option>
-            <option value="4">Muy Humedo</option>
+            <option value="10">Muy Seco</option>
+            <option value="11">Seco</option>
+            <option value="14">Humedo</option>
+            <option value="16">Muy Humedo</option>
         </select>
         <br><br>
         <label for="">Toneladas:</label>
@@ -415,9 +416,10 @@
             <option value="soja">Soja</option>
         </select>
         <br><br>
-        <input type="button" onclick="cambiar()" value="Calucular">
+        <input type="button" onclick="calcular()" value="Calucular">
         </fieldset>
-
+    </div>
+    <div id="datos">
   <fieldset>
       <legend>Informacion de Grano</legend>
       <p id='info_marcha'>Marcha: Datos no Ingresados (hs)</p>
@@ -428,6 +430,7 @@
       <p id='info_humedad'>Humedad: Datos no Ingresados (hs)</p>
       <p id='info_temperatura'>Temperatura: Datos no Ingresados (hs)</p>
   <fieldset>
+</div>
 </div>
 </div>
                         </div></div> 
@@ -456,168 +459,161 @@
 <div comp_type="analogDateTimeComponent" class="server_binding" show_function="showDateTime" range="132" address="7920" type="2" length="6" show_param="1602532867974273" block_format="Unsigned" style="overflow: hidden; line-height: 100%; text-align: center; position: absolute; left: 605px; top: 13px; width: 104px; height: 44px; background-size: 104px 45px; transform: rotate(0deg); font-style: normal; font-family: Arial; font-size: 14px; color: rgb(0, 0, 0); z-index: 13; background-repeat: no-repeat no-repeat;" id="1602532867974273" degree="0">    <div style="position:relative;top:20%">        <div class="dayTime">ddd. HH:mm:ss</div>        <div class="date">yyyy-MM-dd</div>    </div></div><script type="text/javascript">    var showDateTime = function showDateTime() {        if(this.m_sValue&&this.m_sValue.length==12){            var sv = this.m_sValue;            var sec = getValueByBlockFormat("Unsigned", "2", sv.substr(0,2)) + "";            sec = (sec.length == 1) ? "0" + sec : sec;            var date = "20" + sv.substr(2,2) + " - " + sv.substr(4,2) + " - " + sv.substr(6,2);            var time = sv.substr(8,2) + ":" + sv.substr(10,2) + ":" + sec;            var dayNo = new Date(parseInt("20" + sv.substr(2,2)), sv.substr(4,2)-1, sv.substr(6,2)).getDay();                $("#" + this.m_sShowParam + " .dayTime").html(WEEKDAY[dayNo] + " " + time);            $("#" + this.m_sShowParam + " .date").html(date);        }else{            $("#" + this.m_sShowParam + " .dayTime").html("ddd. HH:mm:ss");            $("#" + this.m_sShowParam + " .date").html("yyyy-MM-dd");            console.error("LWE runtime error: AnalogDateTimeComponent connect error!");        }    }</script><div class="server_binding analog_input" comp_type="AnalogValueComponent" show_function="loadAnalogValueComponent" style="border: 0px solid red; position: absolute; left: 840px; top: 23px; width: 37px; height: 22px; text-align: center; background-size: 37px 23px; transform: rotate(0deg); z-index: 14; background-repeat: no-repeat no-repeat;" range="20" address="784" type="4" length="1" show_param="1602532867996274" id="1602532867996274" degree="0" tag_id="Private Tag" block_format="Signed" mode="false">    <div class="valueText" style="">        <input class="inputVal" type="text" size="5" value="" style="width:100%;height:100%">        <span class="unit" style="position: absolute; top: 4px; left: 39px;">%</span>    </div>    <div class="notice" style="color: red;"></div></div><script type="text/javascript">    var loadAnalogValueComponent = function loadAnalogInputComponent() {        var id = this.m_sShowParam;        var blockFormat = $("#" + id).attr("block_format");        var accessModeType = $("#" + id).attr("type");        $("#" + id).attr("title", blockFormat);        var value = getValueByBlockFormat(blockFormat, accessModeType, this.m_sValue);        var actVal = value;        $("#" + id).children(".valueText").children(".inputVal").attr("placeholder", actVal);        $("#" + id).attr("last_placeholder", actVal);    }</script><div class="TextComponent" comp_type="TextComponent" style="overflow: hidden; line-height: 100%; position: absolute; left: 766px; top: 23px; width: 65px; height: 34px; text-align: center; background-size: 65px 35px; transform: rotate(0deg); font-style: normal; font-family: Arial; font-size: 14px; color: rgb(0, 0, 0); z-index: 15; background-repeat: no-repeat no-repeat;" id="1602532868001275" degree="0">    <p style="display:table-cell; vertical-align:middle;text-align: center; ">Humedad:</p></div><div class="server_binding analog_input" comp_type="AnalogValueComponent" show_function="loadAnalogValueComponent" style="border: 0px solid red; position: absolute; left: 840px; top: 61px; width: 37px; height: 22px; text-align: center; background-size: 37px 23px; transform: rotate(0deg); z-index: 16; background-repeat: no-repeat no-repeat;" range="20" address="800" type="4" length="1" show_param="1602532868004276" id="1602532868004276" degree="0" tag_id="Private Tag" block_format="Signed" mode="false">    <div class="valueText" style="">        <input class="inputVal" type="text" size="5" value="" style="width:100%;height:100%">        <span class="unit" style="position: absolute; top: 4px; left: 39px;">%</span>    </div>    <div class="notice" style="color: red;"></div></div><script type="text/javascript">    var loadAnalogValueComponent = function loadAnalogInputComponent() {        var id = this.m_sShowParam;        var blockFormat = $("#" + id).attr("block_format");        var accessModeType = $("#" + id).attr("type");        $("#" + id).attr("title", blockFormat);        var value = getValueByBlockFormat(blockFormat, accessModeType, this.m_sValue);        var actVal = value;        $("#" + id).children(".valueText").children(".inputVal").attr("placeholder", actVal);        $("#" + id).attr("last_placeholder", actVal);    }</script><div class="TextComponent" comp_type="TextComponent" style="overflow: hidden; line-height: 100%; position: absolute; left: 747px; top: 61px; width: 84px; height: 34px; text-align: center; background-size: 84px 35px; transform: rotate(0deg); font-style: normal; font-family: Arial; font-size: 14px; color: rgb(0, 0, 0); z-index: 17; background-repeat: no-repeat no-repeat;" id="1602532868009277" degree="0">    <p style="display:table-cell; vertical-align:middle;text-align: center; ">Temperatura:</p></div><div class="TextComponent" comp_type="TextComponent" style="overflow: hidden; line-height: 100%; position: absolute; left: 255px; top: 410px; width: 84px; height: 34px; text-align: center; background-size: 84px 35px; transform: rotate(0deg); font-style: normal; font-family: Arial; font-size: 14px; color: rgb(0, 0, 0); z-index: 18; background-repeat: no-repeat no-repeat;" id="1602533149953344" degree="0">    <p style="display:table-cell; vertical-align:middle;text-align: center; ">Automatico</p></div></div> 
      
 <script type="text/javascript">
-                            var input1 = document.getElementById("159618002589789");
-                            input1.style.display = 'none';
-                        
-                            var input2 = document.getElementById("159881299939318");
-                            input2.style.display = 'none';
-                            input2.style.visibility = 'hidden';
-                        
-                            var input3 = document.getElementById("159881300338619");
-                            input3.style.display = 'none';
-                            
-                            var informacion = [];
 
-                            firebase.initializeApp({
-                                apiKey: "AIzaSyAdDIO55DLUnZ0AO15r8Jk0GHWhQulv_Dc",
-                                authDomain: "prueba1-a6072.firebaseapp.com",
-                                projectId: "prueba1-a6072"
-                            });
-                            
-                            var db = firebase.firestore();
+    let silo = "silo1";
+    let fraccion = 50; 
+    let id_1 = "159618002589789";
+    let id_2 = "159881299939318";
+    let id_3 = "159881300338619";
+    let id_4 = "1602472376430127";
 
-                            function mostrar_datos(){
-                                let silo1 = db.collection("silos").doc("silo1");
-                                silo1.onSnapshot(function(doc) {
-                                    if (doc.exists) {
-                                        console.log("Document data:", doc.data());
-                                        document.getElementById("info_marcha").innerHTML = "Marcha: " + doc.data().marcha + " hs";
-                                        document.getElementById("info_descanso").innerHTML = "descanso: " + doc.data().descanzo + " hs";
-                                        document.getElementById("info_total").innerHTML = "Total horas: " + doc.data().total + " hs";
-                                        document.getElementById("info_toneladas").innerHTML = "Tonaladas: " + doc.data().toneladas + " T";
-                                        document.getElementById("info_grano").innerHTML = "Grano: " + doc.data().grano;
-                                        document.getElementById("info_humedad").innerHTML = "Humedad: " + doc.data().humedad +" %";
-                                        document.getElementById("info_temperatura").innerHTML = "Temperatura: " + doc.data().temperatura + " C";
-                                    } else {
-                                        // doc.data() will be undefined in this case
-                                        console.log("No such document!");
-                                    }
-                                }
-                                );
-                            }
+    firebase.initializeApp({
+        apiKey: "AIzaSyAdDIO55DLUnZ0AO15r8Jk0GHWhQulv_Dc",
+        authDomain: "prueba1-a6072.firebaseapp.com",
+        projectId: "prueba1-a6072"
+    });
+    
+    var db = firebase.firestore();
+    function getEstado() {
+    let s1 = db.collection("estados").doc("estado1");
+          s1.onSnapshot(function(doc) {
+              if (doc.exists) {
+                    async function getAsincEstado(){
+                      const e = await doc.data().estado;
+                      return e;
+                    }
+                  getAsincEstado()
+                  .then((j) => console.log(j)); 
+              } else {
+                  // doc.data() will be undefined in this case
+                  console.log("No such document!");
+              }
+          }
+        );
+    }
 
-                            
+    var input1 = document.getElementById(id_1);
+    input1.style.display = 'none';
 
-                            function dec2hexString(dec) {
-                                return  (dec+0x10000).toString(16).substr(-4);
-                            }
+    var input2 = document.getElementById(id_2);
+    input2.style.display = 'none';
+    input2.style.visibility = 'hidden';
 
-                            function set_or_update_silo(id,a1,a2,a3,a4,a5,a6,a7){  
-                            let silo = db.collection("silos").doc(id);
-                                silo.set({
-                                    marcha: parseInt(a1),
-                                    descanzo: parseInt(a2),
-                                    total: parseInt(a3),
-                                    grano:a4,
-                                    toneladas: parseInt(a5),
-                                    humedad: parseInt(a6),
-                                    temperatura: parseInt(a7)
-                                });
-                            }
+    var input3 = document.getElementById(id_3);
+    input3.style.display = 'none';
 
-                            function cambiar(){
+    function cambiar_estado(estado){
+        let s = db.collection("estados").doc("estado1");
+        s.set({
+            estado: estado
+        });
+        document.getElementById("form").hidden = estado;
+        document.getElementById("datos").hidden = !estado;
+    }
 
-                                let h;
-                                let pre_h = parseInt(document.getElementById('humedad').value);
-                                switch (pre_h) {
-                                case 1:
-                                    h = 9;
-                                    break;
-                                case 2:
-                                    h = 12;
-                                    break;
-                                case 3:
-                                    h = 35;
-                                    break;
-                                case 4:
-                                    h = 70;
-                                    break;
-                                }
+    function getEstado() {
+    let s1 = db.collection("estados").doc("estado1");
+            s1.onSnapshot(function(doc) {
+                if (doc.exists) {
+                        async function getAsincEstado(){
+                        const e = await doc.data().estado;
+                        return e;
+                        }
+                    getAsincEstado()
+                    .then((res) => cambiar_estado(res)); 
+                } else {
+                    // doc.data() will be undefined in this case
+                    console.log("No such document!");
+                }
+            }
+    );
+    }
 
-                                let t = parseInt(document.getElementById('temperatura').value);
-                                let to = parseInt(document.getElementById('toneladas').value);
-                                let grano = document.getElementById('grano').value;
-                                let d=h;
-                                let suma = (to/50);
-                                
-                                informacion[8] = h;
-                                informacion[1] = t;
-                                informacion[2] = to;
-                                informacion[3] = grano;
-                                informacion[4] = suma;
-                                
-                                if(t>16,5){
-                                    t= ((t-16,5)/100)*suma;}
-                                else{
-                                    t=0;}
+    function mostrar_datos(){
+        let s = db.collection("silos").doc(silo);
+        s   .onSnapshot(function(doc) {
+            if (doc.exists) {
+                console.log("Document data:", doc.data());
+                document.getElementById("info_marcha").innerHTML = "Marcha: " + doc.data().marcha + " hs";
+                document.getElementById("info_descanso").innerHTML = "descanso: " + doc.data().descanzo + " hs";
+                document.getElementById("info_total").innerHTML = "Total horas: " + doc.data().total + " hs";
+                document.getElementById("info_toneladas").innerHTML = "Tonaladas: " + doc.data().toneladas + " T";
+                document.getElementById("info_grano").innerHTML = "Grano: " + doc.data().grano;
+                document.getElementById("info_humedad").innerHTML = "Humedad: " + doc.data().humedad +" %";
+                document.getElementById("info_temperatura").innerHTML = "Temperatura: " + doc.data().temperatura + " C";
+            } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+            }
+        }
+        );
+    }
 
-                                if(grano == 'cebada'){
-                                    if(h>12){
-                                    h= ((h-12)/100)*suma;}
-                                    else{
-                                    h=0;}
-                                }
+    function dec2hexString(dec) {
+        return  (dec+0x10000).toString(16).substr(-4);
+    }
 
-                                if(grano == 'trigo'){
-                                    if(h>14){
-                                    h= ((h-14)/100)*suma;}
-                                    else{
-                                    h=0;}
-                                }
+    function set_or_update_silo(id,marcha_parcial,descanzo,marcha_total,grano,toneladas,humedad,temperatura){  
+    let silo = db.collection("silos").doc(id);
+        silo.set({
+            marcha: parseInt(marcha_parcial),
+            descanzo: parseInt(descanzo),
+            total: parseInt(marcha_total),
+            grano: grano,
+            toneladas: parseInt(toneladas),
+            humedad: parseInt(humedad),
+            temperatura: parseInt(temperatura)
+        });
+    }
 
-                                if(grano == 'soja'){
-                                    if(h>10){
-                                    h= ((h-10)/100)*suma;}
-                                    else{
-                                    h=0;}
-                                }
+    function calcular(){
 
-                                if(grano == 'maiz'){
-                                    if(h>10){
-                                    h= ((h-10)/100)*suma;}
-                                    else{
-                                    h=0;}
-                                }
+        let grano = document.getElementById('grano').value;
+        let temperatura_grano = parseInt(document.getElementById('temperatura').value);
+        let toneladas_grano = parseInt(document.getElementById('toneladas').value);
+        let humedad_grano = parseInt(document.getElementById('humedad').value);
+        let marcha_total = (Math.trunc(toneladas_grano/fraccion) % 2 > 0) ? Math.trunc(toneladas_grano/fraccion)+1 : Math.trunc(toneladas_grano/fraccion);
+        let marcha_parcial = 4;
+        let descanzo = 2;
+        let temperatura_umbral;
+        let humedad_humbral;
 
-                                suma= Math.trunc(suma + t + h);
-                                if(suma % 2 > 0)
-                                    suma = suma +1;
+        cambiar_estado(true);
 
-                                let tiempo_accion = 4;
-                                let tiempo_espera = 4;
-
-                                informacion[5] = tiempo_accion;
-                                informacion[6] = tiempo_espera;
-                                informacion[7] = suma;
-                                
-                                suma = suma*60;
-                                tiempo_accion = tiempo_accion*60;
-                                tiempo_espera = tiempo_espera*60;
-
-                                
-                                    let a= dec2hexString(suma);
-                                    let b = dec2hexString(tiempo_accion);
-                                    let c = dec2hexString(tiempo_espera);
-                                    let e = dec2hexString(d);     
-                                    if(informacion[8] > 12){          
-                                        doSetAnalogValue(159618002589789, a); // Setea el valor del tiempo total en hexa
-                                        doSetAnalogValue(159881299939318, b); // Setea el valor del tiempo en marcha en hexa
-                                        doSetAnalogValue(159881300338619, c);  // Setea el valor del tiempo total en hexa
-                                        doSetAnalogValue(1602472376430127, e);
-                                    }
-                                    if(informacion[8] < 12){
-                                        alert("Grano muy seco, no se puede iniciar!");
-                                    }
-                                                       
-                                console.log(a);
-                                console.log(b);
-                                console.log(c);
-                                console.log(e);
-                                
-                                set_or_update_silo("silo1",informacion[5],informacion[6],informacion[7],informacion[3],informacion[2],informacion[8],informacion[1]);
-                            }
-                            mostrar_datos();
-                        </script>
+        switch (grano) {
+        case "soja":
+            temperatura_umbral = 22;
+            humedad_humbral = 12,5;
+            break;
+        case "cebada":
+            temperatura_umbral = 22;
+            humedad_humbral = 13,5;
+            break;
+        case "maiz":
+            temperatura_umbral = 22;
+            humedad_humbral = 13,5;
+            break;
+        case "trigo":
+            temperatura_umbral = 22;
+            humedad_humbral = 13,5;
+        }    
+        if(13 > 12){          
+            doSetAnalogValue(id_1, dec2hexString(marcha_total*60)); // Setea el valor del tiempo total en hexa
+            doSetAnalogValue(id_2, dec2hexString(marcha_parcial*60)); // Setea el valor del tiempo en marcha en hexa
+            doSetAnalogValue(id_3, dec2hexString(descanzo*60));  // Setea el valor del tiempo total en hexa
+            doSetAnalogValue(id_4, dec2hexString(humedad_grano+20));
+        }
+        if(13 < 12){
+            alert("Grano muy seco, no se puede iniciar!");
+        }
+    
+        set_or_update_silo(silo,marcha_parcial,descanzo,marcha_total,grano,toneladas_grano,humedad_grano,temperatura_grano);
+        
+        mostrar_datos();
+    }
+    getEstado();
+    mostrar_datos();
+</script>
 
 
 
