@@ -744,10 +744,12 @@ function getAtcValFromAnalogTime(obj, input) {
 var intervalId;
 
 function setDigitalData(obj) {
+    console.log(obj);
     var id = obj.id;
     var oRequest = new DBRequest(document.getElementById(id));
     if (obj.value) {
         oRequest.SetValue("00");
+        console.log(obj);
     } else {
         oRequest.SetValue("01");
     }
@@ -787,6 +789,7 @@ function setAnalogData(obj) {
         //showAnalogBar(id,slider_maxVal,slider_minVal, setValue); // for off-line test
     });
 }
+
 function doSetAnalogValue(divID, value) {
     var oRequest = new DBRequest(document.getElementById(divID));
     oRequest.SetValue(value);

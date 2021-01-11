@@ -1797,7 +1797,7 @@
         </Component>
         <Component class="com.siemens.logo.udwp.editor.component.AnalogDateTimeComponent" id="1602448863460121" name="DateTime">
             <ComponentProperty class="NameProperty" id="PROPERTY_Name" value="DateTime"/>
-            <ComponentProperty class="BoundsProperty$Location" id="PROPERTY_Location" value="709@-@45"/>
+            <ComponentProperty class="BoundsProperty$Location" id="PROPERTY_Location" value="715@-@45"/>
             <ComponentProperty class="BoundsProperty$Size" id="PROPERTY_Size" value="120@-@60"/>
             <ComponentProperty class="BasicProperty$Degree" id="PROPERTY_Degree" value="0"/>
             <ComponentProperty class="BoundsProperty$MaxSize" id="PROPERTY_MAX_SIZE" value="600@-@600"/>

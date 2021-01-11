@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TagRef>
     <PageRefs>
-        <PageVm page="page_6"/>
-        <PageVm page="page_7"/>
-        <PageVm page="page_5"/>
-        <PageVm page="page_13"/>
-        <PageVm page="page_14"/>
-        <PageVm page="page_8"/>
+        <PageVm page="main"/>
     </PageRefs>
 </TagRef>
