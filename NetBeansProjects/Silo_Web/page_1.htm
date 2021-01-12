@@ -477,10 +477,13 @@
 
     let silo = "silo1";
     let fraccion = 50; 
+    let temperatura_actual;
+    let humedad_actual;
     let id_1 = "159618002589789";
     let id_2 = "159881299939318";
     let id_3 = "159881300338619";
     let id_4 = "1602472376430127";
+    let id_5 = "1598814665412101";
 
     // async function gethumedad(){
     //                     const e = await document.getElementById("id_humedad").placeholder;
@@ -514,6 +517,18 @@
     }); 
     }
 
+    async function getTemperaturaActual(){
+        const val = await getAttribute(document.getElementById("id_temperatura"), "placeholder");
+        temperatura_actual = parseInt(val);
+    }
+
+    getTemperaturaActual();
+    
+    async function getHumedadActual(){
+        const val = await getAttribute(document.getElementById("id_humedad"), "placeholder");
+        humedad_actual = parseInt(val);
+    }
+    getHumedadActual();
 
 
     firebase.initializeApp({
@@ -532,7 +547,10 @@
     input2.style.visibility = 'hidden';
 
     var input3 = document.getElementById(id_3);
-    input3.style.display = 'none';
+    input3.style.display = 'none';   
+
+    var btn = document.getElementById(id_5);
+    btn.style.display = 'none';
 
     function cambiar_estado(estado){
         let s = db.collection("estados").doc("estado1");
@@ -542,6 +560,8 @@
         document.getElementById("form").hidden = estado;
         document.getElementById("datos").hidden = !estado;
     }
+
+
 
     function getEstado() {
     let s1 = db.collection("estados").doc("estado1");
@@ -609,23 +629,11 @@
         let descanzo = 2;
         let temperatura_umbral;
         let humedad_humbral;
-        let temperatura_actual;
+
+
         
-        async function getTemperaturaActual(){
-            const val = await getAttribute(document.getElementById("id_temperatura"), "placeholder");
-            temperatura_actual = parseInt(val);
-            console.log(temperatura_actual);
-        }
-        getTemperaturaActual();
 
-        async function getHumedadActual(){
-            const val = await getAttribute(document.getElementById("id_humedad"), "placeholder");
-            
-            humedad_humbral = parseInt(val);
-            console.log(humedad_humbral);
-        }
-        getHumedadActual();
-
+        console.log(humedad_actual);
         switch (grano) {
         case "soja":
             temperatura_umbral = 22;
@@ -642,24 +650,70 @@
         case "trigo":
             temperatura_umbral = 22;
             humedad_humbral = 13,5;
-        }    
-        if(13 > 12){          
+        }
+
+        function mensaje(){
+            let val = 0;
+            console.log("temp");
+            console.log(temperatura_actual);
+            console.log(temperatura_grano);
+            if(temperatura_grano == 15 && temperatura_actual < 15){
+                console.log("entro");
+                val = 1;
+            }
+            if(temperatura_grano == 30 || temperatura_grano == 35){
+                if (temperatura_grano == caliente && temperatura_actual > 30){
+                    val = 2;
+                }
+                if (temperatura_grano == 35 && temperatura_actual > 35){
+                    val = 2;
+                }
+            }
+            if(humedad_grano == 14 && humedad_actual > 80){
+                val = 3;
+            }
+            if(humedad_grano == 16 && humedad_actual > 85){
+                val = 3;
+            }
+            if(humedad_grano == 11 || humedad_grano  == 10){
+                if(humedad_actual < 40){
+                    val = 4;
+                }
+            }
+            console.log("val");
+            console.log(val);
+            return val;
+        }
+
+        if(mensaje() == 0){          
             doSetAnalogValue(id_1, dec2hexString(marcha_total*60)); // Setea el valor del tiempo total en hexa
             doSetAnalogValue(id_2, dec2hexString(marcha_parcial*60)); // Setea el valor del tiempo en marcha en hexa
             doSetAnalogValue(id_3, dec2hexString(descanzo*60));  // Setea el valor del tiempo total en hexa
             doSetAnalogValue(id_4, dec2hexString(humedad_grano+20));
             cambiar_estado(true);
+            set_or_update_silo(silo,marcha_parcial,descanzo,marcha_total,grano,toneladas_grano,humedad_grano,temperatura_grano);
+            mostrar_datos();
+            setDigitalData(0,1598814665412101)
         }
-        if(13 < 12){
-            alert("Grano muy seco, no se puede iniciar!");
+        else{
+            switch (mensaje()) {
+                case 1:
+                    alert("La temperatura del grano y la actual son muy bajas para iniciar");
+                    break;
+                case 2:
+                    alert("La temperatura del grano y la actual son muy altas para iniciar");
+                    break;
+                case 3:
+                    alert("La humedad del grano y la actual son muy altas para iniciar");
+                    break;
+                case 4:
+                    alert("La humedad del grano y la actual son muy altas para iniciar");
+        }    
+
         }
-    
-        set_or_update_silo(silo,marcha_parcial,descanzo,marcha_total,grano,toneladas_grano,humedad_grano,temperatura_grano);
-        
+        }
+        getEstado();
         mostrar_datos();
-    }
-    getEstado();
-    mostrar_datos();
 </script>
 
 
