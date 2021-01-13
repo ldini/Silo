@@ -459,9 +459,8 @@
 </div>
 <script type="text/javascript">    var loadAnalogValueComponent = function loadAnalogInputComponent() {        var id = this.m_sShowParam;        var blockFormat = $("#" + id).attr("block_format");        var accessModeType = $("#" + id).attr("type");        $("#" + id).attr("title", blockFormat);        var value = getValueByBlockFormat(blockFormat, accessModeType, this.m_sValue);        var actVal = value;        $("#" + id).children(".valueText").children(".inputVal").attr("placeholder", actVal);        $("#" + id).attr("last_placeholder", actVal);    }</script>
 <div comp_type="analogDateTimeComponent" class="server_binding" show_function="showDateTime" range="132" address="7920" type="2" length="6" show_param="1602532867974273" block_format="Unsigned" style="overflow: hidden; line-height: 100%; text-align: center; position: absolute; left: 605px; top: 13px; width: 104px; height: 44px; background-size: 104px 45px; transform: rotate(0deg); font-style: normal; font-family: Arial; font-size: 14px; color: rgb(0, 0, 0); z-index: 13; background-repeat: no-repeat no-repeat;" id="1602532867974273" degree="0">    <div style="position:relative;top:20%">        <div class="dayTime">ddd. HH:mm:ss</div>        <div class="date">yyyy-MM-dd</div>    </div></div><script type="text/javascript">    var showDateTime = function showDateTime() {        if(this.m_sValue&&this.m_sValue.length==12){            var sv = this.m_sValue;            var sec = getValueByBlockFormat("Unsigned", "2", sv.substr(0,2)) + "";            sec = (sec.length == 1) ? "0" + sec : sec;            var date = "20" + sv.substr(2,2) + " - " + sv.substr(4,2) + " - " + sv.substr(6,2);            var time = sv.substr(8,2) + ":" + sv.substr(10,2) + ":" + sec;            var dayNo = new Date(parseInt("20" + sv.substr(2,2)), sv.substr(4,2)-1, sv.substr(6,2)).getDay();                $("#" + this.m_sShowParam + " .dayTime").html(WEEKDAY[dayNo] + " " + time);            $("#" + this.m_sShowParam + " .date").html(date);        }else{            $("#" + this.m_sShowParam + " .dayTime").html("ddd. HH:mm:ss");            $("#" + this.m_sShowParam + " .date").html("yyyy-MM-dd");            console.error("LWE runtime error: AnalogDateTimeComponent connect error!");        }    }</script><div class="server_binding analog_input" comp_type="AnalogValueComponent" show_function="loadAnalogValueComponent" style="border: 0px solid red; position: absolute; left: 840px; top: 23px; width: 37px; height: 22px; text-align: center; background-size: 37px 23px; transform: rotate(0deg); z-index: 14; background-repeat: no-repeat no-repeat;" range="20" address="784" type="4" length="1" show_param="1602532867996274" id="1602532867996274" degree="0" tag_id="Private Tag" block_format="Signed" mode="false">    <div class="valueText" style="">        <input id="id_humedad" class="inputVal" type="text" size="5" value="" style="width:100%;height:100%">        <span class="unit" style="position: absolute; top: 4px; left: 39px;">%</span>    </div>    <div class="notice" style="color: red;"></div></div><script type="text/javascript">    var loadAnalogValueComponent = function loadAnalogInputComponent() {        var id = this.m_sShowParam;        var blockFormat = $("#" + id).attr("block_format");        var accessModeType = $("#" + id).attr("type");        $("#" + id).attr("title", blockFormat);        var value = getValueByBlockFormat(blockFormat, accessModeType, this.m_sValue);        var actVal = value;        $("#" + id).children(".valueText").children(".inputVal").attr("placeholder", actVal);        $("#" + id).attr("last_placeholder", actVal);    }</script><div class="TextComponent" comp_type="TextComponent" style="overflow: hidden; line-height: 100%; position: absolute; left: 766px; top: 23px; width: 65px; height: 34px; text-align: center; background-size: 65px 35px; transform: rotate(0deg); font-style: normal; font-family: Arial; font-size: 14px; color: rgb(0, 0, 0); z-index: 15; background-repeat: no-repeat no-repeat;" id="1602532868001275" degree="0">    <p style="display:table-cell; vertical-align:middle;text-align: center; ">Humedad:</p></div><div class="server_binding analog_input" comp_type="AnalogValueComponent" show_function="loadAnalogValueComponent" style="border: 0px solid red; position: absolute; left: 840px; top: 61px; width: 37px; height: 22px; text-align: center; background-size: 37px 23px; transform: rotate(0deg); z-index: 16; background-repeat: no-repeat no-repeat;" range="20" address="800" type="4" length="1" show_param="1602532868004276" id="1602532868004276" degree="0" tag_id="Private Tag" block_format="Signed" mode="false">    <div class="valueText" style="">        <input id="id_temperatura" class="inputVal" type="text" size="5" value="" style="width:100%;height:100%">        <span class="unit" style="position: absolute; top: 4px; left: 39px;">%</span>    </div>    <div class="notice" style="color: red;"></div></div><script type="text/javascript">    var loadAnalogValueComponent = function loadAnalogInputComponent() {        var id = this.m_sShowParam;        var blockFormat = $("#" + id).attr("block_format");        var accessModeType = $("#" + id).attr("type");        $("#" + id).attr("title", blockFormat);        var value = getValueByBlockFormat(blockFormat, accessModeType, this.m_sValue);        var actVal = value;        $("#" + id).children(".valueText").children(".inputVal").attr("placeholder", actVal);        $("#" + id).attr("last_placeholder", actVal);    }</script><div class="TextComponent" comp_type="TextComponent" style="overflow: hidden; line-height: 100%; position: absolute; left: 747px; top: 61px; width: 84px; height: 34px; text-align: center; background-size: 84px 35px; transform: rotate(0deg); font-style: normal; font-family: Arial; font-size: 14px; color: rgb(0, 0, 0); z-index: 17; background-repeat: no-repeat no-repeat;" id="1602532868009277" degree="0">    <p style="display:table-cell; vertical-align:middle;text-align: center; ">Temperatura:</p></div><div class="TextComponent" comp_type="TextComponent" style="overflow: hidden; line-height: 100%; position: absolute; left: 255px; top: 410px; width: 84px; height: 34px; text-align: center; background-size: 84px 35px; transform: rotate(0deg); font-style: normal; font-family: Arial; font-size: 14px; color: rgb(0, 0, 0); z-index: 18; background-repeat: no-repeat no-repeat;" id="1602533149953344" degree="0">    <p style="display:table-cell; vertical-align:middle;text-align: center; ">Automatico</p></div></div> 
-     
+  
 <script type="text/javascript">
-
     function setDigitalData(value,id) {
         var oRequest = new DBRequest(document.getElementById(id));
         if (value) {
@@ -474,63 +473,47 @@
         }
         return false;
     }
-
+    
     let silo = "silo1";
+    let estado_actual = "estado1";
     let fraccion = 50; 
-    let temperatura_actual;
-    let humedad_actual;
     let id_1 = "159618002589789";
     let id_2 = "159881299939318";
     let id_3 = "159881300338619";
     let id_4 = "1602472376430127";
-    let id_5 = "1598814665412101";
+    let id_5 = "1598814665412101";  
 
-    // async function gethumedad(){
-    //                     const e = await document.getElementById("id_humedad").placeholder;
-    //                     return e;
-    //                     }
-    //                 gethumedad()
-    //                 .then((res) => console.log(res)); 
 
- 
-    // let temperatura_actual = document.getElementById("id_temperatura").placeholder;
-
-    // console.log(humedad_actual);
-    // console.log(temperatura_actual);
-
-    function getAttribute(element, attribute){
-    return new Promise((resolve, reject) => { 
-        const observer = new MutationObserver(function(mutations, observer) {
-            mutations.forEach(function(mutation) {
-                if (mutation.type == "attributes") {
-                    if(mutation.attributeName == attribute){
-                        observer.disconnect();
-                        resolve(element.getAttribute(attribute));
-                    }
-                }
-            });
+    function getAttribute(id, attribute){
+        return new Promise((resolve, reject) => { 
+            var rep = 0;
+            function test(){
+            const e = document.getElementById(id);
+            if(e && e.hasAttribute(attribute)){
+                resolve(e.getAttribute(attribute));
+                clearInterval(rep);
+            }
+            }
+            rep = setInterval(test, 100);
         });
+        }
+
+        async function getHumedadActual(){
+            const val = await getAttribute("id_humedad", "placeholder");
+            console.log("esto entro porfin");
+            console.log(val);
+            return val;
+            
+        }
         
-        observer.observe(element, {
-            attributes: true //configure it to listen to attribute changes
-        });    
-    }); 
-    }
+        async function getTemperaturaActual(){
+            const val = await getAttribute("id_temperatura", "placeholder");
+            console.log(val);
+            return val;
+            
+        }
 
-    async function getTemperaturaActual(){
-        const val = await getAttribute(document.getElementById("id_temperatura"), "placeholder");
-        temperatura_actual = parseInt(val);
-    }
-
-    getTemperaturaActual();
     
-    async function getHumedadActual(){
-        const val = await getAttribute(document.getElementById("id_humedad"), "placeholder");
-        humedad_actual = parseInt(val);
-    }
-    getHumedadActual();
-
-
     firebase.initializeApp({
         apiKey: "AIzaSyAdDIO55DLUnZ0AO15r8Jk0GHWhQulv_Dc",
         authDomain: "prueba1-a6072.firebaseapp.com",
@@ -538,33 +521,33 @@
     });
     
     var db = firebase.firestore();
-
+    
     var input1 = document.getElementById(id_1);
     input1.style.display = 'none';
-
+    
     var input2 = document.getElementById(id_2);
     input2.style.display = 'none';
     input2.style.visibility = 'hidden';
-
+    
     var input3 = document.getElementById(id_3);
     input3.style.display = 'none';   
-
+    
     var btn = document.getElementById(id_5);
     btn.style.display = 'none';
-
+    
     function cambiar_estado(estado){
-        let s = db.collection("estados").doc("estado1");
+        let s = db.collection("estados").doc(estado_actual);
         s.set({
             estado: estado
         });
         document.getElementById("form").hidden = estado;
         document.getElementById("datos").hidden = !estado;
     }
-
-
-
+    
+    
+    
     function getEstado() {
-    let s1 = db.collection("estados").doc("estado1");
+    let s1 = db.collection("estados").doc(estado_actual);
             s1.onSnapshot(function(doc) {
                 if (doc.exists) {
                         async function getAsincEstado(){
@@ -580,7 +563,7 @@
             }
     );
     }
-
+    
     function mostrar_datos(){
         let s = db.collection("silos").doc(silo);
         s   .onSnapshot(function(doc) {
@@ -600,11 +583,11 @@
         }
         );
     }
-
+    
     function dec2hexString(dec) {
         return  (dec+0x10000).toString(16).substr(-4);
     }
-
+    
     function set_or_update_silo(id,marcha_parcial,descanzo,marcha_total,grano,toneladas,humedad,temperatura){  
     let silo = db.collection("silos").doc(id);
         silo.set({
@@ -617,9 +600,10 @@
             temperatura: parseInt(temperatura)
         });
     }
-
-    function calcular(){
-
+    
+    async function calcular(){
+        const humedad_actual = await getHumedadActual();
+        const temperatura_actual = await getTemperaturaActual();
         let grano = document.getElementById('grano').value;
         let temperatura_grano = parseInt(document.getElementById('temperatura').value);
         let toneladas_grano = parseInt(document.getElementById('toneladas').value);
@@ -629,10 +613,10 @@
         let descanzo = 2;
         let temperatura_umbral;
         let humedad_humbral;
-
-
+    
+    
         
-
+    
         console.log(humedad_actual);
         switch (grano) {
         case "soja":
@@ -651,7 +635,7 @@
             temperatura_umbral = 22;
             humedad_humbral = 13,5;
         }
-
+    
         function mensaje(){
             let val = 0;
             console.log("temp");
@@ -662,7 +646,7 @@
                 val = 1;
             }
             if(temperatura_grano == 30 || temperatura_grano == 35){
-                if (temperatura_grano == caliente && temperatura_actual > 30){
+                if ((temperatura_grano == "caliente") && (temperatura_actual) > 30){
                     val = 2;
                 }
                 if (temperatura_grano == 35 && temperatura_actual > 35){
@@ -684,7 +668,8 @@
             console.log(val);
             return val;
         }
-
+        
+        console.log("mensaje: " + mensaje()  )
         if(mensaje() == 0){          
             doSetAnalogValue(id_1, dec2hexString(marcha_total*60)); // Setea el valor del tiempo total en hexa
             doSetAnalogValue(id_2, dec2hexString(marcha_parcial*60)); // Setea el valor del tiempo en marcha en hexa
@@ -693,7 +678,7 @@
             cambiar_estado(true);
             set_or_update_silo(silo,marcha_parcial,descanzo,marcha_total,grano,toneladas_grano,humedad_grano,temperatura_grano);
             mostrar_datos();
-            setDigitalData(0,1598814665412101)
+            setDigitalData(0,id_5);
         }
         else{
             switch (mensaje()) {
@@ -709,11 +694,12 @@
                 case 4:
                     alert("La humedad del grano y la actual son muy altas para iniciar");
         }    
-
+    
         }
         }
         getEstado();
         mostrar_datos();
+
 </script>
 
 

@@ -52,6 +52,7 @@
                 white-space: nowrap; 
             }
         </style>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
         <link href="js/jqueryui/jqueryui.css" rel="stylesheet" type="text/css"/>
         <link href="css/nav.css" rel="stylesheet" type="text/css"/> 
         <!-- this script helps older IE versions to understand html5 -->
@@ -193,214 +194,294 @@
 <div comp_type="RectangleComponent" style="border: 0px solid rgb(0, 0, 0); position: absolute; left: 423px; top: 148px; width: 351px; height: 254px; text-align: center; background-size: 351px 255px; transform: rotate(0deg); zoom: 1; opacity: 1; z-index: 12; background-repeat: no-repeat no-repeat;" id="1599788715991222" degree="0">
 
     <div>
-        <fieldset>
-                <legend>Datos</legend>
-                <label for="humedad">Humedad:</label>
-                <select name="humedad" id="humedad">
-                    <option value="1">asssso</option>
-                    <option value="2">Seco</option>
-                    <option value="3">Humedo</option>
-                    <option value="4">Muy Humedo</option>
-                </select>
-                <br><br>
-                <label for="">Toneladas:</label>
-                <input type="text" id="toneladas">
-                <br><br>
-                <label for="temperatura">Temperatura:</label>
-                <select name="temperatura" id="temperatura">
-                    <option value="15">Frio</option>
-                    <option value="22">Normal</option>
-                    <option value="30">Caliente</option>
-                    <option value="35">Muy Caliente</option>
-                </select>
-                <br><br>
-                <label for="grano">Selecciones el Grano:</label>
-                <select name="grano" id="grano">
-                    <option value="cebada">Cebada</option>
-                    <option value="maiz">Maiz</option>
-                    <option value="trigo">Trigo</option>
-                    <option value="soja">Soja</option>
-                </select>
-                <br><br>
-                <input type="button" onclick="cambiar()" value="Calucular">
-                </fieldset>
-        
-          <fieldset>
-              <legend>Informacion de Grano</legend>
-              <p id='info_marcha'>Marcha: Datos no Ingresados (hs)</p>
-              <p id='info_descanso'>descanso: Datos no Ingresados (hs)</p>
-              <p id='info_total'>Total horas: Datos no Ingresados (hs)</p>
-              <p id='info_grano'>Grano: Datos no Ingresados (hs)</p>
-              <p id='info_toneladas'>Tonaladas: Datos no Ingresados (hs)</p>
-              <p id='info_humedad'>Humedad: Datos no Ingresados (hs)</p>
-              <p id='info_temperatura'>Temperatura: Datos no Ingresados (hs)</p>
-          <fieldset>
-        </div>
-        <script type="text/javascript">
-            var input1 = document.getElementById("1599108458386168");
-            input1.style.display = 'none';
-        
-            var input2 = document.getElementById("1599108458406173");
-            input2.style.display = 'none';
-            input2.style.visibility = 'hidden';
-        
-            var input3 = document.getElementById("1599108458411175");
-            input3.style.display = 'none';
+        <div id="form">
+<fieldset>
+    <legend>Datos</legend>
+    <label for="humedad">Humedad:</label>
+    <select name="humedad" id="humedad">
+        <option value="10">Muy Seco</option>
+        <option value="11">Seco</option>
+        <option value="14">Humedo</option>
+        <option value="16">Muy Humedo</option>
+    </select>
+    <br><br>
+    <label for="">Toneladas:</label>
+    <input type="text" id="toneladas">
+    <br><br>
+    <label for="temperatura">Temperatura:</label>
+    <select name="temperatura" id="temperatura">
+                <option value="15">Frio</option>
+                <option value="22">Normal</option>
+                <option value="30">Caliente</option>
+                <option value="35">Muy Caliente</option>
+            </select>
+    <br><br>
+    <label for="grano">Selecciones el Grano:</label>
+    <select name="grano" id="grano">
+        <option value="cebada">Cebada</option>
+        <option value="maiz">Maiz</option>
+        <option value="trigo">Trigo</option>
+        <option value="soja">Soja</option>
+    </select>
+    <br><br>
+    <input type="button" onclick="calcular()" value="Calucular">
+    </fieldset>
+</div>
+<div id="datos">
+<fieldset>
+  <legend>Informacion de Grano</legend>
+  <p id='info_marcha'>Marcha: Datos no Ingresados (hs)</p>
+  <p id='info_descanso'>descanso: Datos no Ingresados (hs)</p>
+  <p id='info_total'>Total horas: Datos no Ingresados (hs)</p>
+  <p id='info_grano'>Grano: Datos no Ingresados (hs)</p>
+  <p id='info_toneladas'>Tonaladas: Datos no Ingresados (hs)</p>
+  <p id='info_humedad'>Humedad: Datos no Ingresados (hs)</p>
+  <p id='info_temperatura'>Temperatura: Datos no Ingresados (hs)</p>
+  <input type="button" onclick="cambiar_estado(false); setDigitalData(1,1599108458408174)" value="CANCELAR">
+<fieldset>
+</div>
+</div>    
 
-        
-            var informacion = [];
-
-firebase.initializeApp({
-apiKey: "AIzaSyAdDIO55DLUnZ0AO15r8Jk0GHWhQulv_Dc",
-authDomain: "prueba1-a6072.firebaseapp.com",
-projectId: "prueba1-a6072"
-});
-
-var db = firebase.firestore();
-
-function mostrar_datos(){
-let silo1 = db.collection("silos").doc("silo5");
-silo1.onSnapshot(function(doc) {
-if (doc.exists) {
-console.log("Document data:", doc.data());
-document.getElementById("info_marcha").innerHTML = "Marcha: " + doc.data().marcha + " hs";
-document.getElementById("info_descanso").innerHTML = "descanso: " + doc.data().descanzo + " hs";
-document.getElementById("info_total").innerHTML = "Total horas: " + doc.data().total + " hs";
-document.getElementById("info_toneladas").innerHTML = "Tonaladas: " + doc.data().toneladas + " T";
-document.getElementById("info_grano").innerHTML = "Grano: " + doc.data().grano;
-document.getElementById("info_humedad").innerHTML = "Humedad: " + doc.data().humedad +" %";
-document.getElementById("info_temperatura").innerHTML = "Temperatura: " + doc.data().temperatura + " C";
-} else {
-// doc.data() will be undefined in this case
-console.log("No such document!");
-}
-}
-);
-}
+<script type="text/javascript">
+    function setDigitalData(value,id) {
+        var oRequest = new DBRequest(document.getElementById(id));
+        if (value) {
+            oRequest.SetValue("00");
+        } else {
+            oRequest.SetValue("01");
+        }
+        if (oRequest.SetQuery()) {
+            intervalId = setInterval(checkResult, 1000, oRequest);
+        }
+        return false;
+    }
+    
+    let silo = "silo5";
+    let estado_actual = "estado5";
+    let fraccion = 50; 
+    let id_1 = "1599108458386168";
+    let id_2 = "1599108458406173";
+    let id_3 = "1599108458411175";
+    let id_4 = "1602531675601255";
+    let id_5 = "1599108458408174";
 
 
-
-function dec2hexString(dec) {
-return  (dec+0x10000).toString(16).substr(-4);
-}
-
-function set_or_update_silo(id,a1,a2,a3,a4,a5,a6,a7){  
-let silo = db.collection("silos").doc(id);
-silo.set({
-marcha: parseInt(a1),
-descanzo: parseInt(a2),
-total: parseInt(a3),
-grano:a4,
-toneladas: parseInt(a5),
-humedad: parseInt(a6),
-temperatura: parseInt(a7)
-});
-}
-
-function cambiar(){
-
-let h;
-let pre_h = parseInt(document.getElementById('humedad').value);
-switch (pre_h) {
-case 1:
-h = 20;
-break;
-case 2:
-h = 61;
-break;
-case 3:
-h = 71;
-break;
-case 4:
-h = 91;
-break;
-}
-
-let t = parseInt(document.getElementById('temperatura').value);
-let to = parseInt(document.getElementById('toneladas').value);
-let grano = document.getElementById('grano').value;
-let d=h;
-let suma = (to/50);
-
-informacion[8] = h;
-informacion[1] = t;
-informacion[2] = to;
-informacion[3] = grano;
-informacion[4] = suma;
-
-if(t>16,5){
-t= ((t-16,5)/100)*suma;}
-else{
-t=0;}
-
-if(grano == 'cebada'){
-if(h>12){
-h= ((h-12)/100)*suma;}
-else{
-h=0;}
-}
-
-if(grano == 'trigo'){
-if(h>14){
-h= ((h-14)/100)*suma;}
-else{
-h=0;}
-}
-
-if(grano == 'soja'){
-if(h>10){
-h= ((h-10)/100)*suma;}
-else{
-h=0;}
-}
-
-if(grano == 'maiz'){
-if(h>10){
-h= ((h-10)/100)*suma;}
-else{
-h=0;}
-}
-
-suma= Math.trunc(suma + t + h);
-if(suma % 2 > 0)
-suma = suma +1;
-
-let tiempo_accion = 4;
-let tiempo_espera = 4;
-
-informacion[5] = tiempo_accion;
-informacion[6] = tiempo_espera;
-informacion[7] = suma;
-
-suma = suma*60;
-tiempo_accion = tiempo_accion*60;
-tiempo_espera = tiempo_espera*60;
-
-
-let a= dec2hexString(suma);
-let b = dec2hexString(tiempo_accion);
-let c = dec2hexString(tiempo_espera);
-let e = dec2hexString(d);     
-if(true){          
-
-                doSetAnalogValue(1599108458386168, a); // Setea el valor del tiempo total en hexa
-                doSetAnalogValue(1599108458406173, b); // Setea el valor del tiempo en marcha en hexa
-                doSetAnalogValue(1599108458411175, c);  // Setea el valor del tiempo total en hexa
-                doSetAnalogValue(1602531675601255, e);
+    function getAttribute(id, attribute){
+        return new Promise((resolve, reject) => { 
+            var rep = 0;
+            function test(){
+            const e = document.getElementById(id);
+            if(e && e.hasAttribute(attribute)){
+                resolve(e.getAttribute(attribute));
+                clearInterval(rep);
             }
-                    if(informacion[8] == 20){
-                        alert("Grano muy seco, no se puede iniciar!");
-                    }
-                                       
-                console.log(a);
-                console.log(b);
-                console.log(c);
-                console.log(e);
-                
-                set_or_update_silo("silo5",informacion[5],informacion[6],informacion[7],informacion[3],informacion[2],informacion[8],informacion[1]);
             }
+            rep = setInterval(test, 100);
+        });
+        }
+
+        async function getHumedadActual(){
+            const val = await getAttribute("id_humedad", "placeholder");
+            console.log("esto entro porfin");
+            console.log(val);
+            return val;
+            
+        }
+        
+        async function getTemperaturaActual(){
+            const val = await getAttribute("id_temperatura", "placeholder");
+            console.log(val);
+            return val;
+            
+        }
+
+    
+    firebase.initializeApp({
+        apiKey: "AIzaSyAdDIO55DLUnZ0AO15r8Jk0GHWhQulv_Dc",
+        authDomain: "prueba1-a6072.firebaseapp.com",
+        projectId: "prueba1-a6072"
+    });
+    
+    var db = firebase.firestore();
+    
+    var input1 = document.getElementById(id_1);
+    input1.style.display = 'none';
+    
+    var input2 = document.getElementById(id_2);
+    input2.style.display = 'none';
+    input2.style.visibility = 'hidden';
+    
+    var input3 = document.getElementById(id_3);
+    input3.style.display = 'none';   
+    
+    var btn = document.getElementById(id_5);
+    btn.style.display = 'none';
+    
+    function cambiar_estado(estado){
+        let s = db.collection("estados").doc(estado_actual);
+        s.set({
+            estado: estado
+        });
+        document.getElementById("form").hidden = estado;
+        document.getElementById("datos").hidden = !estado;
+    }
+    
+    
+    
+    function getEstado() {
+    let s1 = db.collection("estados").doc(estado_actual);
+            s1.onSnapshot(function(doc) {
+                if (doc.exists) {
+                        async function getAsincEstado(){
+                        const e = await doc.data().estado;
+                        return e;
+                        }
+                    getAsincEstado()
+                    .then((res) => cambiar_estado(res)); 
+                } else {
+                    // doc.data() will be undefined in this case
+                    console.log("No such document!");
+                }
+            }
+    );
+    }
+    
+    function mostrar_datos(){
+        let s = db.collection("silos").doc(silo);
+        s   .onSnapshot(function(doc) {
+            if (doc.exists) {
+                console.log("Document data:", doc.data());
+                document.getElementById("info_marcha").innerHTML = "Marcha: " + doc.data().marcha + " hs";
+                document.getElementById("info_descanso").innerHTML = "descanso: " + doc.data().descanzo + " hs";
+                document.getElementById("info_total").innerHTML = "Total horas: " + doc.data().total + " hs";
+                document.getElementById("info_toneladas").innerHTML = "Tonaladas: " + doc.data().toneladas + " T";
+                document.getElementById("info_grano").innerHTML = "Grano: " + doc.data().grano;
+                document.getElementById("info_humedad").innerHTML = "Humedad: " + doc.data().humedad +" %";
+                document.getElementById("info_temperatura").innerHTML = "Temperatura: " + doc.data().temperatura + " C";
+            } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+            }
+        }
+        );
+    }
+    
+    function dec2hexString(dec) {
+        return  (dec+0x10000).toString(16).substr(-4);
+    }
+    
+    function set_or_update_silo(id,marcha_parcial,descanzo,marcha_total,grano,toneladas,humedad,temperatura){  
+    let silo = db.collection("silos").doc(id);
+        silo.set({
+            marcha: parseInt(marcha_parcial),
+            descanzo: parseInt(descanzo),
+            total: parseInt(marcha_total),
+            grano: grano,
+            toneladas: parseInt(toneladas),
+            humedad: parseInt(humedad),
+            temperatura: parseInt(temperatura)
+        });
+    }
+    
+    async function calcular(){
+        const humedad_actual = await getHumedadActual();
+        const temperatura_actual = await getTemperaturaActual();
+        let grano = document.getElementById('grano').value;
+        let temperatura_grano = parseInt(document.getElementById('temperatura').value);
+        let toneladas_grano = parseInt(document.getElementById('toneladas').value);
+        let humedad_grano = parseInt(document.getElementById('humedad').value);
+        let marcha_total = (Math.trunc(toneladas_grano/fraccion) % 2 > 0) ? Math.trunc(toneladas_grano/fraccion)+1 : Math.trunc(toneladas_grano/fraccion);
+        let marcha_parcial = 4;
+        let descanzo = 2;
+        let temperatura_umbral;
+        let humedad_humbral;
+    
+    
+        
+    
+        console.log(humedad_actual);
+        switch (grano) {
+        case "soja":
+            temperatura_umbral = 22;
+            humedad_humbral = 12,5;
+            break;
+        case "cebada":
+            temperatura_umbral = 22;
+            humedad_humbral = 13,5;
+            break;
+        case "maiz":
+            temperatura_umbral = 22;
+            humedad_humbral = 13,5;
+            break;
+        case "trigo":
+            temperatura_umbral = 22;
+            humedad_humbral = 13,5;
+        }
+    
+        function mensaje(){
+            let val = 0;
+            console.log("temp");
+            console.log(temperatura_actual);
+            console.log(temperatura_grano);
+            if(temperatura_grano == 15 && temperatura_actual < 15){
+                console.log("entro");
+                val = 1;
+            }
+            if(temperatura_grano == 30 || temperatura_grano == 35){
+                if ((temperatura_grano == "caliente") && (temperatura_actual) > 30){
+                    val = 2;
+                }
+                if (temperatura_grano == 35 && temperatura_actual > 35){
+                    val = 2;
+                }
+            }
+            if(humedad_grano == 14 && humedad_actual > 80){
+                val = 3;
+            }
+            if(humedad_grano == 16 && humedad_actual > 85){
+                val = 3;
+            }
+            if(humedad_grano == 11 || humedad_grano  == 10){
+                if(humedad_actual < 40){
+                    val = 4;
+                }
+            }
+            console.log("val");
+            console.log(val);
+            return val;
+        }
+        
+        console.log("mensaje: " + mensaje()  )
+        if(mensaje() == 0){          
+            doSetAnalogValue(id_1, dec2hexString(marcha_total*60)); // Setea el valor del tiempo total en hexa
+            doSetAnalogValue(id_2, dec2hexString(marcha_parcial*60)); // Setea el valor del tiempo en marcha en hexa
+            doSetAnalogValue(id_3, dec2hexString(descanzo*60));  // Setea el valor del tiempo total en hexa
+            doSetAnalogValue(id_4, dec2hexString(humedad_grano+20));
+            cambiar_estado(true);
+            set_or_update_silo(silo,marcha_parcial,descanzo,marcha_total,grano,toneladas_grano,humedad_grano,temperatura_grano);
             mostrar_datos();
-        </script>
+            setDigitalData(0,id_5);
+        }
+        else{
+            switch (mensaje()) {
+                case 1:
+                    alert("La temperatura del grano y la actual son muy bajas para iniciar");
+                    break;
+                case 2:
+                    alert("La temperatura del grano y la actual son muy altas para iniciar");
+                    break;
+                case 3:
+                    alert("La humedad del grano y la actual son muy altas para iniciar");
+                    break;
+                case 4:
+                    alert("La humedad del grano y la actual son muy altas para iniciar");
+        }    
+    
+        }
+        }
+        getEstado();
+        mostrar_datos();
+</script>
 
 
 
@@ -431,14 +512,14 @@ if(true){
 </div>
 <div class="server_binding analog_input" comp_type="AnalogValueComponent" show_function="loadAnalogValueComponent" style="border: 0px solid red; position: absolute; left: 761px; top: 28px; width: 37px; height: 22px; text-align: center; background-size: 37px 23px; transform: rotate(0deg); z-index: 15; background-repeat: no-repeat no-repeat;" range="20" address="784" type="4" length="1" show_param="1602532976465315" id="1602532976465315" degree="0" tag_id="Private Tag" block_format="Signed" mode="false">    
 <div class="valueText" style="">        
-<input class="inputVal" type="text" size="5" value="" style="width:100%;height:100%">        <span class="unit" style="position: absolute; top: 4px; left: 39px;">%</span>    
+<input id="id_humedad" class="inputVal" type="text" size="5" value="" style="width:100%;height:100%">        <span class="unit" style="position: absolute; top: 4px; left: 39px;">%</span>    
 </div>    
 <div class="notice" style="color: red;"></div>
 </div>
 <script type="text/javascript">    var loadAnalogValueComponent = function loadAnalogInputComponent() {        var id = this.m_sShowParam;        var blockFormat = $("#" + id).attr("block_format");        var accessModeType = $("#" + id).attr("type");        $("#" + id).attr("title", blockFormat);        var value = getValueByBlockFormat(blockFormat, accessModeType, this.m_sValue);        var actVal = value;        $("#" + id).children(".valueText").children(".inputVal").attr("placeholder", actVal);        $("#" + id).attr("last_placeholder", actVal);    }</script>
 <div class="server_binding analog_input" comp_type="AnalogValueComponent" show_function="loadAnalogValueComponent" style="border: 0px solid red; position: absolute; left: 761px; top: 66px; width: 37px; height: 22px; text-align: center; background-size: 37px 23px; transform: rotate(0deg); z-index: 16; background-repeat: no-repeat no-repeat;" range="20" address="800" type="4" length="1" show_param="1602532976468316" id="1602532976468316" degree="0" tag_id="Private Tag" block_format="Signed" mode="false">    
 <div class="valueText" style="">        
-<input class="inputVal" type="text" size="5" value="" style="width:100%;height:100%">        <span class="unit" style="position: absolute; top: 4px; left: 39px;">%</span>    
+<input id="id_temperatura" class="inputVal" type="text" size="5" value="" style="width:100%;height:100%">        <span class="unit" style="position: absolute; top: 4px; left: 39px;">%</span>    
 </div>    
 <div class="notice" style="color: red;"></div>
 </div>
@@ -451,6 +532,9 @@ if(true){
 </div>
 </div> 
         </DIV>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+
         <div id='timeout_dlg' style='display: none' >Please check the network connection!</div>
     </BODY>
 </HTML>
