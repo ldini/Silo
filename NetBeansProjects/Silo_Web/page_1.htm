@@ -51,6 +51,31 @@
                 overflow: hidden; 
                 white-space: nowrap; 
             }
+            .cargando {
+                width: .01em;
+                height: .01em;
+                background: white;
+                position: fixed;
+                z-index: -1;
+                left: 50%;
+                top: 50%;
+                border:2em solid #aaa;
+                Border-bottom-color:white;
+                transform: translate(-50%,-50%) rotate(0deg);
+                border-radius: 100%;
+                        animation: cargando 1.5s infinite linear;
+                -webkit-animation: cargando 1.5s infinite linear;
+                box-shadow:0 0 0 1em #aaa;
+                    }
+                    @keyframes cargando {
+                        from {
+                        transform:translate(-50%,-50%) rotate(-360deg);
+                }
+                    }
+
+                    .ocultar{
+                        display: none;
+                    }
         </style>
         <link href="js/jqueryui/jqueryui.css" rel="stylesheet" type="text/css"/>
         <link href="css/nav.css" rel="stylesheet" type="text/css"/> 
@@ -385,7 +410,9 @@
 
 <div comp_type="RectangleComponent" style="border: 0px solid rgb(0, 0, 0); position: absolute; left: 511px; top: 153px; width: 333px; height: 258px; text-align: center; background-size: 333px 259px; transform: rotate(0deg); zoom: 1; opacity: 1; z-index: 12; background-repeat: no-repeat no-repeat;" id="1602302561177242" degree="0">
 
-    <div>
+    <div id="carga" class="">
+    </div>
+    <div id="nocarga">
         <div style="border-radius: 17px 17px 17px 17px;
             -moz-border-radius: 17px 17px 17px 17px;
             -webkit-border-radius: 17px 17px 17px 17px;
@@ -476,6 +503,8 @@
 <div comp_type="analogDateTimeComponent" class="server_binding" show_function="showDateTime" range="132" address="7920" type="2" length="6" show_param="1602532867974273" block_format="Unsigned" style="overflow: hidden; line-height: 100%; text-align: center; position: absolute; left: 605px; top: 13px; width: 104px; height: 44px; background-size: 104px 45px; transform: rotate(0deg); font-style: normal; font-family: Arial; font-size: 14px; color: rgb(0, 0, 0); z-index: 13; background-repeat: no-repeat no-repeat;" id="1602532867974273" degree="0">    <div style="position:relative;top:20%">        <div class="dayTime">ddd. HH:mm:ss</div>        <div class="date">yyyy-MM-dd</div>    </div></div><script type="text/javascript">    var showDateTime = function showDateTime() {        if(this.m_sValue&&this.m_sValue.length==12){            var sv = this.m_sValue;            var sec = getValueByBlockFormat("Unsigned", "2", sv.substr(0,2)) + "";            sec = (sec.length == 1) ? "0" + sec : sec;            var date = "20" + sv.substr(2,2) + " - " + sv.substr(4,2) + " - " + sv.substr(6,2);            var time = sv.substr(8,2) + ":" + sv.substr(10,2) + ":" + sec;            var dayNo = new Date(parseInt("20" + sv.substr(2,2)), sv.substr(4,2)-1, sv.substr(6,2)).getDay();                $("#" + this.m_sShowParam + " .dayTime").html(WEEKDAY[dayNo] + " " + time);            $("#" + this.m_sShowParam + " .date").html(date);        }else{            $("#" + this.m_sShowParam + " .dayTime").html("ddd. HH:mm:ss");            $("#" + this.m_sShowParam + " .date").html("yyyy-MM-dd");            console.error("LWE runtime error: AnalogDateTimeComponent connect error!");        }    }</script><div class="server_binding analog_input" comp_type="AnalogValueComponent" show_function="loadAnalogValueComponent" style="border: 0px solid red; position: absolute; left: 840px; top: 23px; width: 37px; height: 22px; text-align: center; background-size: 37px 23px; transform: rotate(0deg); z-index: 14; background-repeat: no-repeat no-repeat;" range="20" address="784" type="4" length="1" show_param="1602532867996274" id="1602532867996274" degree="0" tag_id="Private Tag" block_format="Signed" mode="false">    <div class="valueText" style="">        <input id="id_humedad" class="inputVal" type="text" size="5" value="" style="width:100%;height:100%">        <span class="unit" style="position: absolute; top: 4px; left: 39px;">%</span>    </div>    <div class="notice" style="color: red;"></div></div><script type="text/javascript">    var loadAnalogValueComponent = function loadAnalogInputComponent() {        var id = this.m_sShowParam;        var blockFormat = $("#" + id).attr("block_format");        var accessModeType = $("#" + id).attr("type");        $("#" + id).attr("title", blockFormat);        var value = getValueByBlockFormat(blockFormat, accessModeType, this.m_sValue);        var actVal = value;        $("#" + id).children(".valueText").children(".inputVal").attr("placeholder", actVal);        $("#" + id).attr("last_placeholder", actVal);    }</script><div class="TextComponent" comp_type="TextComponent" style="overflow: hidden; line-height: 100%; position: absolute; left: 766px; top: 23px; width: 65px; height: 34px; text-align: center; background-size: 65px 35px; transform: rotate(0deg); font-style: normal; font-family: Arial; font-size: 14px; color: rgb(0, 0, 0); z-index: 15; background-repeat: no-repeat no-repeat;" id="1602532868001275" degree="0">    <p style="display:table-cell; vertical-align:middle;text-align: center; ">Humedad:</p></div><div class="server_binding analog_input" comp_type="AnalogValueComponent" show_function="loadAnalogValueComponent" style="border: 0px solid red; position: absolute; left: 840px; top: 61px; width: 37px; height: 22px; text-align: center; background-size: 37px 23px; transform: rotate(0deg); z-index: 16; background-repeat: no-repeat no-repeat;" range="20" address="800" type="4" length="1" show_param="1602532868004276" id="1602532868004276" degree="0" tag_id="Private Tag" block_format="Signed" mode="false">    <div class="valueText" style="">        <input id="id_temperatura" class="inputVal" type="text" size="5" value="" style="width:100%;height:100%">        <span class="unit" style="position: absolute; top: 4px; left: 39px;">%</span>    </div>    <div class="notice" style="color: red;"></div></div><script type="text/javascript">    var loadAnalogValueComponent = function loadAnalogInputComponent() {        var id = this.m_sShowParam;        var blockFormat = $("#" + id).attr("block_format");        var accessModeType = $("#" + id).attr("type");        $("#" + id).attr("title", blockFormat);        var value = getValueByBlockFormat(blockFormat, accessModeType, this.m_sValue);        var actVal = value;        $("#" + id).children(".valueText").children(".inputVal").attr("placeholder", actVal);        $("#" + id).attr("last_placeholder", actVal);    }</script><div class="TextComponent" comp_type="TextComponent" style="overflow: hidden; line-height: 100%; position: absolute; left: 747px; top: 61px; width: 84px; height: 34px; text-align: center; background-size: 84px 35px; transform: rotate(0deg); font-style: normal; font-family: Arial; font-size: 14px; color: rgb(0, 0, 0); z-index: 17; background-repeat: no-repeat no-repeat;" id="1602532868009277" degree="0">    <p style="display:table-cell; vertical-align:middle;text-align: center; ">Temperatura:</p></div><div class="TextComponent" comp_type="TextComponent" style="overflow: hidden; line-height: 100%; position: absolute; left: 255px; top: 410px; width: 84px; height: 34px; text-align: center; background-size: 84px 35px; transform: rotate(0deg); font-style: normal; font-family: Arial; font-size: 14px; color: rgb(0, 0, 0); z-index: 18; background-repeat: no-repeat no-repeat;" id="1602533149953344" degree="0">    <p style="display:table-cell; vertical-align:middle;text-align: center; ">Automatico</p></div></div> 
   
 <script type="text/javascript">
+    document.getElementById('nocarga').classList.add('ocultar');
+    document.getElementById('carga').classList.add('cargando');
     function setDigitalData(value,id) {
         var oRequest = new DBRequest(document.getElementById(id));
         if (value) {
@@ -567,6 +596,8 @@
                 if (doc.exists) {
                         async function getAsincEstado(){
                         const e = await doc.data().estado;
+                        document.getElementById('carga').classList.remove('cargando');
+                        document.getElementById('nocarga').classList.remove('ocultar');
                         return e;
                         }
                     getAsincEstado()
@@ -617,7 +648,7 @@
     }
     
     async function calcular(){
-        console.log("cargando");
+
         const humedad_actual = await getHumedadActual();
         const temperatura_actual = await getTemperaturaActual();
         let grano = document.getElementById('grano').value;
@@ -630,7 +661,7 @@
         let temperatura_umbral;
         let humedad_humbral;
     
-        console.log("listo")
+
         
     
         console.log(humedad_actual);
@@ -713,8 +744,10 @@
     
         }
         }
+
         getEstado();
         mostrar_datos();
+
 
 </script>
 
