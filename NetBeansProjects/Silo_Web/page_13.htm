@@ -115,56 +115,71 @@
 <script type="text/javascript">    var loadCustomizedComponent = function loadCustomizedComponent() {        var id = this.m_sShowParam;        var ontext = document.getElementById(id).getAttribute("on_text");        var offtext = document.getElementById(id).getAttribute("off_text");        var onimage = document.getElementById(id).getAttribute("on_image");        var offimage = document.getElementById(id).getAttribute("off_image");        var value = parseInt(this.m_sValue, 16);        document.getElementById(id).value = value;        var showText = (value == 0) ? offtext : ontext;        var showImage = (value == 0) ? offimage : onimage;        if ($("#" + id + " p").length == 0) {            document.getElementById(id).innerHTML = showText;        } else {            $("#" + id + " p").html(showText);        }        document.getElementById(id).style.backgroundImage = "url(" + showImage + ")";    };</script>
 
 
-<div comp_type="CustomizedComponent" show_function="loadCustomizedComponent" class="server_binding textCenter" style="position: absolute; left: 292px; top: 398px; width: 57px; height: 34px; text-align: center; background-size: 57px 35px; line-height: 34px; transform: rotate(0deg); background-image: url(file:///D:/documentos/Silo/NetBeansProjects/Silo_Web/img/982170EF.png); z-index: 8; background-repeat: no-repeat no-repeat;" range="131" address="41" type="1" length="1" on_text="" off_text="" id="159985110611799" show_param="159985110611799" degree="0" tag_id="Private Tag" on_image="img/AC2417CB.png" off_image="img/982170EF.png" mode="true" onclick="setDigitalData(this)"></div>
+<div comp_type="CustomizedComponent" show_function="loadCustomizedComponent" class="server_binding textCenter" style="position: absolute; left: 292px; top: 398px; width: 57px; height: 34px; text-align: center; background-size: 57px 35px; line-height: 34px; transform: rotate(0deg); background-image: url(file:///D:/documentos/Silo/NetBeansProjects/Silo_Web/img/982170EF.png); z-index: 8; background-repeat: no-repeat no-repeat; display: none;" range="131" address="41" type="1" length="1" on_text="" off_text="" id="159985110611799" show_param="159985110611799" degree="0" tag_id="Private Tag" on_image="img/AC2417CB.png" off_image="img/982170EF.png" mode="true" onclick="setDigitalData(this)"></div>
 
 
 <div comp_type="RectangleComponent" style="border: 0px solid rgb(0, 0, 0); position: absolute; left: 432px; top: 139px; width: 326px; height: 254px; text-align: center; background-size: 326px 255px; transform: rotate(0deg); zoom: 1; opacity: 1; z-index: 12; background-repeat: no-repeat no-repeat;" id="1599851118308100" degree="0">
-    <div>
-        <div id="form">
-<fieldset>
-    <legend>Datos</legend>
-    <label for="humedad">Humedad:</label>
-    <select name="humedad" id="humedad">
-        <option value="10">Muy Seco</option>
-        <option value="11">Seco</option>
-        <option value="14">Humedo</option>
-        <option value="16">Muy Humedo</option>
-    </select>
-    <br><br>
-    <label for="">Toneladas:</label>
-    <input type="text" id="toneladas">
-    <br><br>
-    <label for="temperatura">Temperatura:</label>
-    <select name="temperatura" id="temperatura">
-                <option value="15">Frio</option>
-                <option value="22">Normal</option>
-                <option value="30">Caliente</option>
-                <option value="35">Muy Caliente</option>
-            </select>
-    <br><br>
-    <label for="grano">Selecciones el Grano:</label>
-    <select name="grano" id="grano">
-        <option value="cebada">Cebada</option>
-        <option value="maiz">Maiz</option>
-        <option value="trigo">Trigo</option>
-        <option value="soja">Soja</option>
-    </select>
-    <br><br>
-    <input type="button" onclick="calcular()" value="Calucular">
-    </fieldset>
+    <div style="border-radius: 17px 17px 17px 17px;
+    -moz-border-radius: 17px 17px 17px 17px;
+    -webkit-border-radius: 17px 17px 17px 17px;
+    border: 5px double #01201a;
+    background-color: rgb(68, 151, 144);
+    webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    ">
+
+<div id="form">
+<form>
+<h3 class="text-center">Ingrese los datos</h3>
+<label for="humedad">Humedad:</label>
+<select class="form-control" name="humedad" id="humedad">
+<option selected="true" disabled="disabled">seleccione la Humedad</option>
+<option value="10">Muy Seco</option>
+<option value="11">Seco</option>
+<option value="14">Humedo</option>
+<option value="16">Muy Humedo</option>
+</select>
+<label for="">Toneladas:</label>
+<input class="form-control" type="text" id="toneladas">
+<label for="temperatura">Temperatura:</label>
+<select class="form-control" name="temperatura" id="temperatura" placeholder="Temperatura">
+<option selected="true" disabled="disabled">seleccione la temperatura</option>
+<option value="15">Frio</option>
+<option value="22">Normal</option>
+<option value="30">Caliente</option>
+<option value="35">Muy Caliente</option>
+</select>
+<label for="grano">Grano:</label>
+<select class="form-control" name="grano" id="grano">
+<option selected="true" disabled="disabled">seleccione el Grano</option>
+<option value="cebada">Cebada</option>
+<option value="maiz">Maiz</option>
+<option value="trigo">Trigo</option>
+<option value="soja">Soja</option>
+</select>
+<br><br>
+<div class="col text-center">
+<input class="btn btn-primary" type="button" onclick="calcular()" value="Calucular">
 </div>
+</form>
+</div>
+
+
 <div id="datos">
-<fieldset>
-  <legend>Informacion de Grano</legend>
-  <p id='info_marcha'>Marcha: Datos no Ingresados (hs)</p>
-  <p id='info_descanso'>descanso: Datos no Ingresados (hs)</p>
-  <p id='info_total'>Total horas: Datos no Ingresados (hs)</p>
-  <p id='info_grano'>Grano: Datos no Ingresados (hs)</p>
-  <p id='info_toneladas'>Tonaladas: Datos no Ingresados (hs)</p>
-  <p id='info_humedad'>Humedad: Datos no Ingresados (hs)</p>
-  <p id='info_temperatura'>Temperatura: Datos no Ingresados (hs)</p>
-  <input type="button" onclick="cambiar_estado(false); setDigitalData(1,159985110611799)" value="CANCELAR">
-<fieldset>
+<form>
+<h3 class="text-center">Informacion de Grano</h3>
+<p class="text-center" id='info_marcha'>Marcha: Datos no Ingresados (hs)</p>
+<p class="text-center" id='info_descanso'>descanso: Datos no Ingresados (hs)</p>
+<p class="text-center" id='info_total'>Total horas: Datos no Ingresados (hs)</p>
+<p class="text-center" id='info_grano'>Grano: Datos no Ingresados (hs)</p>
+<p class="text-center" id='info_toneladas'>Tonaladas: Datos no Ingresados (hs)</p>
+<p class="text-center" id='info_humedad'>Humedad: Datos no Ingresados (hs)</p>
+<p class="text-center" id='info_temperatura'>Temperatura: Datos no Ingresados (hs)</p>
+<div class="col text-center">
+<input class="btn btn-primary" type="button" onclick="cambiar_estado(false); setDigitalData(1,159985110611799)" value="CANCELAR">
+</div>
+</form>
 </div>
 </div>
 
@@ -229,16 +244,6 @@
     });
     
     var db = firebase.firestore();
-    
-    var input1 = document.getElementById(id_1);
-    input1.style.display = 'none';
-    
-    var input2 = document.getElementById(id_2);
-    input2.style.display = 'none';
-    input2.style.visibility = 'hidden';
-    
-    var input3 = document.getElementById(id_3);
-    input3.style.display = 'none';   
     
     var btn = document.getElementById(id_5);
     btn.style.display = 'none';
@@ -412,7 +417,7 @@
 </div>
 
 
-<div class="server_binding analog_input" comp_type="AnalogValueComponent" show_function="loadAnalogValueComponent" style="border: 0px solid red; position: absolute; left: 278px; top: 240px; width: 84px; height: 22px; text-align: center; background-size: 84px 23px; transform: rotate(0deg); z-index: 4; background-repeat: no-repeat no-repeat;" range="20" address="512" type="4" length="1" show_param="1599936417870317" id="1599936417870317" degree="0" tag_id="Private Tag" block_format="Unsigned" mode="true">    
+<div class="server_binding analog_input" comp_type="AnalogValueComponent" show_function="loadAnalogValueComponent" style="border: 0px solid red; position: absolute; left: 278px; top: 240px; width: 84px; height: 22px; text-align: center; background-size: 84px 23px; transform: rotate(0deg); z-index: 4; background-repeat: no-repeat no-repeat; display: none;" range="20" address="512" type="4" length="1" show_param="1599936417870317" id="1599936417870317" degree="0" tag_id="Private Tag" block_format="Unsigned" mode="true">    
 
 
 <div class="valueText" style="">        
@@ -433,7 +438,7 @@
 <script type="text/javascript">    var loadAnalogValueComponent = function loadAnalogInputComponent() {        var id = this.m_sShowParam;        var blockFormat = $("#" + id).attr("block_format");        var accessModeType = $("#" + id).attr("type");        $("#" + id).attr("title", blockFormat);        var value = getValueByBlockFormat(blockFormat, accessModeType, this.m_sValue);        var actVal = value;        $("#" + id).children(".valueText").children(".inputVal").attr("placeholder", actVal);        $("#" + id).attr("last_placeholder", actVal);    }</script>
 
 
-<div class="server_binding analog_input" comp_type="AnalogValueComponent" show_function="loadAnalogValueComponent" style="border: 0px solid red; position: absolute; left: 278px; top: 202px; width: 84px; height: 22px; text-align: center; background-size: 84px 23px; transform: rotate(0deg); z-index: 3; background-repeat: no-repeat no-repeat;" range="20" address="496" type="4" length="1" show_param="1599936417876318" id="1599936417876318" degree="0" tag_id="Private Tag" block_format="Unsigned" mode="true">    
+<div class="server_binding analog_input" comp_type="AnalogValueComponent" show_function="loadAnalogValueComponent" style="border: 0px solid red; position: absolute; left: 278px; top: 202px; width: 84px; height: 22px; text-align: center; background-size: 84px 23px; transform: rotate(0deg); z-index: 3; background-repeat: no-repeat no-repeat; display: none;" range="20" address="496" type="4" length="1" show_param="1599936417876318" id="1599936417876318" degree="0" tag_id="Private Tag" block_format="Unsigned" mode="true">    
 
 
 <div class="valueText" style="">        
@@ -451,7 +456,7 @@
 </div>
 
 
-<div class="server_binding analog_input" comp_type="AnalogValueComponent" show_function="loadAnalogValueComponent" style="border: 0px solid red; position: absolute; left: 278px; top: 278px; width: 84px; height: 22px; text-align: center; background-size: 84px 23px; transform: rotate(0deg); z-index: 5; background-repeat: no-repeat no-repeat;" range="20" address="528" type="4" length="1" show_param="1599936417879319" id="1599936417879319" degree="0" tag_id="Private Tag" block_format="Unsigned" mode="true">    
+<div class="server_binding analog_input" comp_type="AnalogValueComponent" show_function="loadAnalogValueComponent" style="border: 0px solid red; position: absolute; left: 278px; top: 278px; width: 84px; height: 22px; text-align: center; background-size: 84px 23px; transform: rotate(0deg); z-index: 5; background-repeat: no-repeat no-repeat; display: none;" range="20" address="528" type="4" length="1" show_param="1599936417879319" id="1599936417879319" degree="0" tag_id="Private Tag" block_format="Unsigned" mode="true">    
 
 
 <div class="valueText" style="">        
@@ -472,7 +477,7 @@
 <script type="text/javascript">    var loadAnalogValueComponent = function loadAnalogInputComponent() {        var id = this.m_sShowParam;        var blockFormat = $("#" + id).attr("block_format");        var accessModeType = $("#" + id).attr("type");        $("#" + id).attr("title", blockFormat);        var value = getValueByBlockFormat(blockFormat, accessModeType, this.m_sValue);        var actVal = value;        $("#" + id).children(".valueText").children(".inputVal").attr("placeholder", actVal);        $("#" + id).attr("last_placeholder", actVal);    }</script>
 
 
-<div class="server_binding analog_input" comp_type="AnalogValueComponent" show_function="loadAnalogValueComponent" style="border: 0px solid red; position: absolute; left: 244px; top: 151px; width: 22px; height: 22px; text-align: center; background-size: 22px 23px; transform: rotate(0deg); z-index: 2; background-repeat: no-repeat no-repeat;" range="20" address="912" type="4" length="1" show_param="1602531743012259" id="1602531743012259" degree="0" tag_id="Private Tag" block_format="Unsigned" mode="true">    
+<div class="server_binding analog_input" comp_type="AnalogValueComponent" show_function="loadAnalogValueComponent" style="border: 0px solid red; position: absolute; left: 244px; top: 151px; width: 22px; height: 22px; text-align: center; background-size: 22px 23px; transform: rotate(0deg); z-index: 2; background-repeat: no-repeat no-repeat; display: none;" range="20" address="912" type="4" length="1" show_param="1602531743012259" id="1602531743012259" degree="0" tag_id="Private Tag" block_format="Unsigned" mode="true">    
 <div class="valueText" style="">        
 <input class="inputVal" type="text" size="5" value="" style="width:100%;height:100%">        <span class="unit" style="position: absolute; top: 4px; left: 24px;"></span>    
 </div>    

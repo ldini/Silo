@@ -257,53 +257,68 @@
 
 
 <div comp_type="RectangleComponent" style="border: 0px solid rgb(0, 0, 0); position: absolute; left: 439px; top: 127px; width: 310px; height: 246px; text-align: center; background-size: 310px 247px; transform: rotate(0deg); zoom: 1; opacity: 1; z-index: 11; background-repeat: no-repeat no-repeat;" id="1599934758024313" degree="0">
-    <div>
-            <div id="form">
-<fieldset>
-        <legend>Datos</legend>
-        <label for="humedad">Humedad:</label>
-        <select name="humedad" id="humedad">
-            <option value="10">Muy Seco</option>
-            <option value="11">Seco</option>
-            <option value="14">Humedo</option>
-            <option value="16">Muy Humedo</option>
-        </select>
-        <br><br>
-        <label for="">Toneladas:</label>
-        <input type="text" id="toneladas">
-        <br><br>
-        <label for="temperatura">Temperatura:</label>
-        <select name="temperatura" id="temperatura">
-                    <option value="15">Frio</option>
-                    <option value="22">Normal</option>
-                    <option value="30">Caliente</option>
-                    <option value="35">Muy Caliente</option>
-                </select>
-        <br><br>
-        <label for="grano">Selecciones el Grano:</label>
-        <select name="grano" id="grano">
-            <option value="cebada">Cebada</option>
-            <option value="maiz">Maiz</option>
-            <option value="trigo">Trigo</option>
-            <option value="soja">Soja</option>
-        </select>
-        <br><br>
-        <input type="button" onclick="calcular()" value="Calucular">
-        </fieldset>
+    <div style="border-radius: 17px 17px 17px 17px;
+            -moz-border-radius: 17px 17px 17px 17px;
+            -webkit-border-radius: 17px 17px 17px 17px;
+            border: 5px double #01201a;
+            background-color: rgb(68, 151, 144);
+            webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+            -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+            box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+            ">
+
+<div id="form">
+  <form>
+    <h3 class="text-center">Ingrese los datos</h3>
+    <label for="humedad">Humedad:</label>
+    <select class="form-control" name="humedad" id="humedad">
+      <option selected="true" disabled="disabled">seleccione la Humedad</option>
+      <option value="10">Muy Seco</option>
+      <option value="11">Seco</option>
+      <option value="14">Humedo</option>
+      <option value="16">Muy Humedo</option>
+    </select>
+    <label for="">Toneladas:</label>
+    <input class="form-control" type="text" id="toneladas">
+    <label for="temperatura">Temperatura:</label>
+    <select class="form-control" name="temperatura" id="temperatura" placeholder="Temperatura">
+      <option selected="true" disabled="disabled">seleccione la temperatura</option>
+      <option value="15">Frio</option>
+      <option value="22">Normal</option>
+      <option value="30">Caliente</option>
+      <option value="35">Muy Caliente</option>
+    </select>
+    <label for="grano">Grano:</label>
+    <select class="form-control" name="grano" id="grano">
+      <option selected="true" disabled="disabled">seleccione el Grano</option>
+      <option value="cebada">Cebada</option>
+      <option value="maiz">Maiz</option>
+      <option value="trigo">Trigo</option>
+      <option value="soja">Soja</option>
+    </select>
+    <br><br>
+    <div class="col text-center">
+    <input class="btn btn-primary" type="button" onclick="calcular()" value="Calucular">
     </div>
+    </form>
+  </div>
+    
+    
     <div id="datos">
-  <fieldset>
-      <legend>Informacion de Grano</legend>
-      <p id='info_marcha'>Marcha: Datos no Ingresados (hs)</p>
-      <p id='info_descanso'>descanso: Datos no Ingresados (hs)</p>
-      <p id='info_total'>Total horas: Datos no Ingresados (hs)</p>
-      <p id='info_grano'>Grano: Datos no Ingresados (hs)</p>
-      <p id='info_toneladas'>Tonaladas: Datos no Ingresados (hs)</p>
-      <p id='info_humedad'>Humedad: Datos no Ingresados (hs)</p>
-      <p id='info_temperatura'>Temperatura: Datos no Ingresados (hs)</p>
-      <input type="button" onclick="cambiar_estado(false); setDigitalData(1,1599934758007308)" value="CANCELAR">
-  <fieldset>
-</div>
+    <form>
+      <h3 class="text-center">Informacion de Grano</h3>
+      <p class="text-center" id='info_marcha'>Marcha: Datos no Ingresados (hs)</p>
+      <p class="text-center" id='info_descanso'>descanso: Datos no Ingresados (hs)</p>
+      <p class="text-center" id='info_total'>Total horas: Datos no Ingresados (hs)</p>
+      <p class="text-center" id='info_grano'>Grano: Datos no Ingresados (hs)</p>
+      <p class="text-center" id='info_toneladas'>Tonaladas: Datos no Ingresados (hs)</p>
+      <p class="text-center" id='info_humedad'>Humedad: Datos no Ingresados (hs)</p>
+      <p class="text-center" id='info_temperatura'>Temperatura: Datos no Ingresados (hs)</p>
+      <div class="col text-center">
+      <input class="btn btn-primary" type="button" onclick="cambiar_estado(false); setDigitalData(1,1599934758007308)" value="CANCELAR">
+      </div>
+     </form>
+     </div>
 </div>
 
 <script type="text/javascript">
